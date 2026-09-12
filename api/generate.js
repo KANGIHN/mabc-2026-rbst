@@ -1,44 +1,54 @@
 모듈.exports = async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Content-Type", "application/json");
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ ok: false, error: "POST만 지원" });
 
-  let body;
-  try { body = JSON.parse(req.body || "{}"); }
-  catch { return res.status(400).json({ ok: false, error: "잘못된 요청" }); }
+  let body = {};
+  try {
+    body = JSON.parse(req.body || "{}");
+  } catch (e) {
+    return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" });
+  }
 
   const query = (body && body.query && String(body.query).trim()) || "";
   const isDemo = !!body.isDemo;
 
   if (!query) {
     return res.status(200).json({
-      ok: false,
-      failure: false,
-      data: { cards: [], more: null }
+      ok: false, failure: false, data: { cards: [], more: null }
     });
   }
 
-  const apiKey = process.env.UPSTAGE_API_KEY;
-  const result = await buildResumeCard(query, apiKey, isDemo);
-  return res.status(200).json(result);
+  // 단계별 디버깅 로그 (키 노출 없이)
+  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
+
+  if (isDemo) {
+    try {
+      const demoResult = buildDemoResult(query);
+      return res.status(200).json({ ok: true, data: demoResult, failure: false, debug: { stage: "demo_ok", apiKeyPresent } });
+    } catch (e) {
+      return res.status(200).json({ ok: false, failure: true, error: "데모 처리 중 오류", debug: { stage: "demo_error", msg: String(e) } });
+    }
+  }
+
+  if (!apiKeyPresent) {
+    return res.status(200).json({ ok: false, failure: false, data: { cards: [], more: null }, note: "연결된 도구에서 관련 기록을 찾지 못했어요.", debug: { stage: "no_key" } });
+  }
+
+  try {
+    const result = await buildResumeCard(query, process.env.UPSTAGE_API_KEY, false);
+    return res.status(200).json({ ok: true, data: result, failure: false, debug: { stage: "solar_ok", apiKeyPresent } });
+  } catch (e) {
+    return res.status(200).json({ ok: false, failure: true, error: "Solar 호출 중 오류", debug: { stage: "solar_error", msg: String(e) } });
+  }
 };
 
 async function buildResumeCard(query, apiKey, isDemo) {
-  if (isDemo) {
-    return buildDemoResult(query);
-  }
+  // 이 함수는 현재 데모 모드일 때는 호출되지 않도록 설계됨
+  if (isDemo) return buildDemoResult(query);
+
   if (!apiKey) {
-    return {
-      ok: false,
-      failure: false,
-      data: {
-        cards: [],
-        more: null,
-        note: "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요."
-      }
-    };
+    return { ok: false, failure: false, data: { cards: [], more: null }, note: "연결된 도구에서 관련 기록을 찾지 못했어요." };
   }
 
   try {
@@ -87,30 +97,19 @@ async function buildResumeCard(query, apiKey, isDemo) {
     });
 
     if (!response.ok) {
-      return {
-        ok: false,
-        failure: true,
-        data: { cards: [], more: null, message: "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." }
-      };
+      const errBody = await response.text().catch(() => "");
+      return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugHttp: response.status, debugBody: errBody.slice(0, 200) };
     }
 
     const json = await response.json();
     const content = ((json?.choices?.[0]?.message?.content) || "").trim();
     const parsed = safeParseJson(content);
     if (!parsed || !Array.isArray(parsed.cards)) {
-      return {
-        ok: false,
-        failure: true,
-        data: { cards: [], more: null, message: "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." }
-      };
+      return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugParsed: parsed };
     }
     return { ok: true, data: parsed, failure: false };
-  } catch (err) {
-    return {
-      ok: false,
-      failure: true,
-      data: { cards: [], more: null, message: "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." }
-    };
+  } catch (e) {
+    return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugError: String(e) };
   }
 }
 
