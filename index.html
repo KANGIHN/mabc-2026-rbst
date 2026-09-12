@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResumeCard — 업무 재개 카드</title>
+<style>
+  :root { --bg:#f7f7f8; --card:#fff; --ink:#1a1a1a; --muted:#6b6b6b; --accent:#0b5fff; --line:#e6e6ea; --warn:#b3261e; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+  .wrap { max-width:720px; margin:0 auto; padding:24px 16px; }
+  header h1 { font-size:22px; margin:0 0 4px; }
+  header p { margin:0 0 20px; color:var(--muted); font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin-bottom:16px; }
+  .demo-hint { background:#f2f6ff; border:1px dashed #9bb3ff; border-radius:8px; padding:10px 12px; margin-bottom:16px; color:#0a3d9c; font-size:13px; }
+  label { display:block; font-size:13px; margin-bottom:6px; color:var(--muted); }
+  textarea, input[type=text] { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-size:15px; font-family:inherit; resize:vertical; }
+  textarea:focus, input[type=text]:focus { outline:2px solid var(--accent); border-color:var(--accent); }
+  .row { display:flex; gap:10px; align-items:flex-start; }
+  .row button, .btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 16px; font-size:15px; cursor:pointer; font-weight:600; }
+  .row button:disabled, .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .btn.ghost { background:#fff; color:var(--accent); border:1px solid var(--line); }
+  .btn.secondary { background:#fff; color:var(--ink); border:1px solid var(--line); }
+  .hint { font-size:12px; color:var(--muted); margin-top:6px; }
+  .examples { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .examples button { background:#fff; border:1px solid var(--line); color:var(--ink); border-radius:20px; padding:5px 10px; font-size:12px; cursor:pointer; }
+  .examples button:hover { border-color:var(--accent); color:var(--accent); }
+  .row2 { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .demo-pick { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .demo-pick button { background:#fff; border:1px solid var(--accent); color:var(--accent); border-radius:8px; padding:6px 10px; font-size:13px; cursor:pointer; }
+  .demo-pick button.active { background:var(--accent); color:#fff; }
+  .status { background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin-bottom:12px; font-size:14px; color:var(--muted); }
+  .progress { height:6px; background:#eef0f3; border-radius:3px; overflow:hidden; margin-top:6px; }
+  .progress > div { height:100%; width:0; background:var(--accent); transition:width .15s; }
+  .card-body h2 { margin:0 0 4px; font-size:17px; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; padding:3px 8px; border-radius:12px; background:#eef0f3; color:var(--muted); }
+  .tag.warn { background:#fdeceb; color:var(--warn); }
+  .tag.good { background:#e7f7e9; color:#1a6b2f; }
+  .card-body .line { margin:10px 0; }
+  .card-body .label { font-size:12px; color:var(--muted); display:block; margin-bottom:2px; }
+  .btn.toggle { padding:4px 8px; font-size:12px; }
+  .section { border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; }
+  .sumlist { font-size:13px; color:var(--muted); }
+  .sumlist li { margin-bottom:2px; }
+  .toast { position:fixed; left:16px; right:16px; bottom:16px; background:#111; color:#fff; padding:12px 16px; border-radius:8px; font-size:14px; max-width:480px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ResumeCard</h1>
+    <p>이어가고 싶은 일 하나만 알려주면, 흩어진 기록을 다시 훑지 않고도 업무 재개 카드 한 장을 바로 보여줘요.</p>
+  </header>
+
+  <div class="demo-hint">
+    🔗 데모 예시로 체험하기 — 아래 예시 업무 중 하나를 누르면, 실제 카드 생성 흐름(입력 → 처리 상태 → 카드 출력)이 돌아가요. 예시 표지는 데모 예시예요.
+  </div>
+
+  <div class="demo-pick" id="demoPick"></div>
+
+  <div class="card">
+    <label for="input">이어가고 싶은 일을 질문이나 태그/키워드로 알려줘</label>
+    <div class="examples" id="examples"></div>
+    <div class="row">
+      <textarea id="input" rows="3" placeholder="이어가고 싶은 일을 질문이나 태그/키워드로 알려줘"></textarea>
+    </div>
+    <div class="row2">
+      <button class="btn" id="genBtn">카드 생성</button>
+      <button class="btn ghost" id="demoBtn">데모 예시로 체험하기</button>
+      <button class="btn secondary" id="tryAgainBtn" style="display:none;">다른 업무 이어보기</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+
+  <div id="statusArea"></div>
+  <div id="resultArea"></div>
+
+  <div class="card" style="background:#f7f7f8;">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">처음 온 사람도 바로 써요 — 계정·저장값 없이 URL로 들어오세요.</div>
+    <div style="font-size:12px;color:var(--muted);">입력 → 기록을 찾고 있어요… → 카드 출력. 연결 환경이 아니면 사용자가 준 메모·키워드 기준으로, 또는 데모 예시로 체험할 수 있어요.</div>
+  </div>
+</div>
+<div id="toast" class="toast" style="display:none;"></div>
+
+<script>
+const EXAMPLES = ["A 프로젝트 어디까지 했지?","분기 검토","B팀 답변 대기"];
+const DEMO = [
+  { name:"MBCD 프로젝트", kind:"일반 진행 업무", note:"업스테이지 MABC 2026 대회 맥락 데모 예시" },
+  { name:"MABC 2026 결선 준비", kind:"검토/의사결정 대기 업무", note:"업스테이지 MABC 2026 대회 맥락 데모 예시" },
+  { name:"프로젝트 전환 정리", kind:"토스·인계 대상 업무", note:"업스테이지 MABC 2026 대회 맥락 데모 예시" }
+];
+const DEMO_RECORDS = {
+  "MBCD 프로젝트":[
+    "메모: 거의 끝남 — 자료 정리 마무리 단계",
+    "메일: 아직 검토 중 — 담당자 확인 필요",
+    "회의록: 다음 주 최종 확인 예정",
+    "투두: 이번 주 금요일까지 보완"
+  ],
+  "MABC 2026 결선 준비":[
+    "캘린더: 발표 리허설 일정 잡힘",
+    "메일: 자료 검토 요청 보냈으나 답 없음",
+    "메모: 초안 완료, 피드백 반영 예정",
+    "투두: 제출 마감 9/16 18:00"
+  ],
+  "프로젝트 전환 정리":[
+    "메모: 토스 대상 정리 중 — 담당자 미확정",
+    "메일: 이전 담당자 답변 대기",
+    "회의록: 인수인계 포인트 3개 확인됨",
+    "투두: 다음 주 월요일 인계 예정"
+  ]
+};
+
+const $ = id => document.getElementById(id);
+const hint = () => $("hint");
+const genBtn = () => $("genBtn");
+const demoBtn = () => $("demoBtn");
+const tryAgainBtn = () => $("tryAgainBtn");
+const statusArea = () => $("statusArea");
+const resultArea = () => $("resultArea");
+const toast = () => $("toast");
+
+function showToast(msg){ toast().textContent = msg; toast().style.display="block"; setTimeout(()=>toast().style.display="none", 3500); }
+
+function setExamples(){
+  const el = $("examples");
+  el.innerHTML = "";
+  EXAMPLES.forEach(t=>{ const b=document.createElement("button"); b.textContent=t; b.onclick=()=>$("input").value=t; el.appendChild(b); });
+}
+
+function setDemoPick(){
+  const el = $("demoPick");
+  el.innerHTML = "";
+  DEMO.forEach((d,i)=>{
+    const b=document.createElement("button");
+    b.textContent = d.name+"("+d.note+")";
+    b.onclick=()=>{
+      document.querySelectorAll("#demoPick button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      $("input").value = d.name;
+      $("hint").textContent = d.kind+" · "+d.note;
+    };
+    el.appendChild(b);
+  });
+}
+
+function status(msg, progress=0){
+  statusArea().innerHTML = "<div class='status'>"+msg+"<div class='progress'><div style='width:"+progress+"%'></div></div></div>";
+}
+function hideStatus(){ statusArea().innerHTML = ""; }
+
+async function runGenerate(query, isDemo){
+  status("기록을 찾고 있어요…", 30);
+  genBtn().disabled = true;
+  demoBtn().disabled = true;
+  tryAgainBtn().style.display="none";
+  resultArea().innerHTML = "";
+
+  await sleep(900);
+  status("기록을 찾고 있어요…", 70);
+
+  let data;
+  try{
+    const res = await fetch("/api/generate", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ query, isDemo })
+    });
+    const raw = await res.json();
+    if(!res.ok || !raw?.ok){ throw new Error(raw?.error || "api 오류"); }
+    data = raw.data;
+  }catch(e){
+    console.error(e);
+    data = {
+      ok:false,
+      failure: true,
+      message: "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요."
+    };
+  }
+
+  status("완료", 100);
+  await sleep(250);
+  hideStatus();
+  genBtn().disabled = false;
+  demoBtn().disabled = false;
+
+  if(!data.ok){
+    if(data.failure){
+      resultArea().innerHTML = "<div class='card' style='border-color:#f3d0cf;'><div class='status' style='color:#b3261e;'>"+escapeHtml(data.message)+"</div></div>";
+    }else{
+      resultArea().innerHTML = "<div class='card'><div class='status'>연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
+    }
+    return;
+  }
+
+  resultArea().innerHTML = renderCards(data.cards, data.more);
+}
+
+function renderCards(cards, more){
+  let html = "<div id='cards'>";
+  cards.forEach(c=>{ html += renderCard(c); });
+  html += "</div>";
+  if(more){
+    html += "<div class='card' style='background:#f7f7f8;'><div class='sumlist'>그 외 <b>"+more.count+"건</b> 더 있음 — 우선 카드가 먼저 나왔어요.</div></div>";
+  }
+  return html;
+}
+
+function renderCard(c){
+  const stateTag = stateTagEl(c.state);
+  const lines = [];
+  lines.push("<h2>"+escapeHtml(c.name)+"</h2>");
+  lines.push("<div class='meta'><span class='tag'>"+escapeHtml(c.kind)+"</span>"+stateTag+"</div>");
+  lines.push("<div class='card-body'>");
+  lines.push("<div class='line'><span class='label'>현재 상태</span>"+escapeHtml(c.stateText)+"</div>");
+  lines.push("<div class='line'><span class='label'>첫 행동</span>"+actionEl(c.action)+"</div>");
+  lines.push("<div class='section'><span class='label'>주의사항</span>"+escapeHtml(c.warn)+"</div>");
+  if(c.reason){
+    lines.push("<div class='section'><span class='label'>근거 펼치기</span><button class='btn toggle ghost' id='r'+"+c.id+">펼치기</button><div id='rd'+"+c.id+" style='display:none;margin-top:6px;color:var(--muted)'>"+escapeHtml(c.reason)+"</div></div>");
+  }
+  lines.push("</div>");
+  return lines.join("");
+}
+
+function stateTagEl(state){
+  const cls = state.includes("충돌")||state.includes("확인 필요") ? "warn" : state.includes("대기") ? "warn" : state==="완료" ? "good" : "";
+  const txt = state;
+  return "<span class='tag "+cls+"'>"+escapeHtml(txt)+"</span>";
+}
+
+function actionEl(action){
+  return "<div>"+escapeHtml(action.line)+"</div><div style='font-size:12px;color:var(--muted);margin-top:2px;'>근거: "+escapeHtml(action.reason)+"</div>";
+}
+
+function escapeHtml(s){
+  return String(s==null?"":s).replace(/[&<>"']/g, ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
+}
+
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+$("examples").innerHTML="";
+setExamples();
+setDemoPick();
+
+$("genBtn").onclick = ()=>{
+  const q = $("input").value.trim();
+  if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $("input").focus(); return; }
+  runGenerate(q, false);
+};
+$("demoBtn").onclick = ()=>{
+  const active = document.querySelector("#demoPick button.active");
+  if(!active){ showToast("데모 예시 업무를 하나 선택해 주세요."); return; }
+  runGenerate(active.textContent.split("(")[0].trim(), true);
+};
+tryAgainBtn().onclick = ()=>{ resultArea().innerHTML=""; $("input").focus(); };
+</script>
+</body>
+</html>
