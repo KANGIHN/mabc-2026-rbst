@@ -19,99 +19,56 @@
     });
   }
 
-  // 단계별 디버깅 로그 (키 노출 없이)
-  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
-
+  // 데모 모드: 먼저 result만 만들고, res.json 전 단계 확인용으로 응답 구조 단순화
   if (isDemo) {
     try {
-      const demoResult = buildDemoResult(query);
-      return res.status(200).json({ ok: true, data: demoResult, failure: false, debug: { stage: "demo_ok", apiKeyPresent } });
+      const result = buildDemoResult(query);
+      // 디버깅: result를 바로 던졌을 때 성공하는지 보기 위한 최소 응답
+      // 실패 패턴이 res.json({ ok, data: result }) 단계에서 나는지 확인
+      return res.status(200).json({
+        ok: true,
+        debug: "generate.handler.demo",
+        data: result,
+        meta: { cardCount: result.data?.cards?.length ?? 0 }
+      });
     } catch (e) {
-      return res.status(200).json({ ok: false, failure: true, error: "데모 처리 중 오류", debug: { stage: "demo_error", msg: String(e) } });
+      return res.status(200).json({
+        ok: false,
+        failure: true,
+        error: "데모 핸들러 내부 오류",
+        debug: { stage: "handler_catch", msg: String(e) }
+      });
     }
   }
 
+  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
   if (!apiKeyPresent) {
-    return res.status(200).json({ ok: false, failure: false, data: { cards: [], more: null }, note: "연결된 도구에서 관련 기록을 찾지 못했어요.", debug: { stage: "no_key" } });
+    return res.status(200).json({
+      ok: false,
+      failure: false,
+      data: { cards: [], more: null },
+      note: "연결된 도구에서 관련 기록을 찾지 못했어요.",
+      debug: { stage: "no_key" }
+    });
   }
 
   try {
     const result = await buildResumeCard(query, process.env.UPSTAGE_API_KEY, false);
-    return res.status(200).json({ ok: true, data: result, failure: false, debug: { stage: "solar_ok", apiKeyPresent } });
+    return res.status(200).json({
+      ok: true,
+      data: result,
+      failure: false,
+      debug: { stage: "solar_ok", apiKeyPresent }
+    });
   } catch (e) {
-    return res.status(200).json({ ok: false, failure: true, error: "Solar 호출 중 오류", debug: { stage: "solar_error", msg: String(e) } });
+    return res.status(200).json({
+      ok: false,
+      failure: true,
+      error: "Solar 호출 중 오류",
+      debug: { stage: "solar_error", msg: String(e) }
+    });
   }
 };
-
-async function buildResumeCard(query, apiKey, isDemo) {
-  // 이 함수는 현재 데모 모드일 때는 호출되지 않도록 설계됨
-  if (isDemo) return buildDemoResult(query);
-
-  if (!apiKey) {
-    return { ok: false, failure: false, data: { cards: [], more: null }, note: "연결된 도구에서 관련 기록을 찾지 못했어요." };
-  }
-
-  try {
-    const prompt = `
-당신은 업무 재개 카드 생성기예요. 사용자의 입력(질문/태그/키워드)과, 관련 기록이 있으면 그걸 바탕으로 업무 재개 카드 한 장을 만들어줘요.
-
-출력은 반드시 아래 JSON 형식으로만 해줘요. 다른 텍스트는 절대 넣지 마요.
-{
-  "cards":[{
-    "id":1,
-    "name":"<업무명>",
-    "kind":"<일반 진행 업무/검토/의사결정 대기 업무/기한형 업무/토스·인계 대상 업무 등>",
-    "state":"<진행 중/대기 중/완료/확인 필요/확인 필요(기록 충돌) 중 하나>",
-    "stateText":"<현재 상태 설명 1~2문장>",
-    "action":{"line":"<첫 행동 1개>","reason":"<근거 1줄>"},
-    "warn":"<주의사항(기한/리스크/대기/충돌/토스·인계 포인트)>",
-    "reason":"<상세 근거(펼침용, 없으면 생략 가능)>"
-  }],
-  "more": null
-}
-
-규칙:
-- 업무 하나에만 집중해서 카드 1장을 만들어줘요.
-- 상태는 진행 중/대기 중/완료/확인 필요/확인 필요(기록 충돌) 중 하나로만 정해줘요.
-- 첫 행동에는 근거를 1줄 붙여줘요.
-- 확실하지 않으면 확정처럼 말하지 말고 [추정]/[확인 필요]로 표시해요.
-- 충돌되면 하나로 덮지 말고 모두 보여줘요.
-- 마감/리스크/대기가 있으면 주의사항에 넣어요.
-- 민감정보(주민등록번호 등)는 절대 넣지 마요. 이름/연락처/메일주소도 업무상 필요한 범위만.
-- 예시는 필요 없고, 실제 입력만 보고 만들어줘요.
-
-입력: "${query}"
-`;
-    const response = await fetch("https://api.aimlapi.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + apiKey,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "upstage/solar-pro4",
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 1024,
-        temperature: 0.2
-      })
-    });
-
-    if (!response.ok) {
-      const errBody = await response.text().catch(() => "");
-      return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugHttp: response.status, debugBody: errBody.slice(0, 200) };
-    }
-
-    const json = await response.json();
-    const content = ((json?.choices?.[0]?.message?.content) || "").trim();
-    const parsed = safeParseJson(content);
-    if (!parsed || !Array.isArray(parsed.cards)) {
-      return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugParsed: parsed };
-    }
-    return { ok: true, data: parsed, failure: false };
-  } catch (e) {
-    return { ok: false, failure: true, data: { cards: [], more: null }, message: "기록을 불러오는 중 문제가 있었어요.", debugError: String(e) };
-  }
-}
 
 function buildDemoResult(query) {
   const demoMap = {
@@ -173,8 +130,8 @@ function buildDemoResult(query) {
           reason: "데모 예시: 실제 연동 환경이 아닌 경우, 예시 데이터로 카드 생성 흐름을 보여줘요."
         }],
         more: null
-      };
-    }
+      }
+    };
   }
   return { ok: true, data: demoMap[key], failure: false };
 }
