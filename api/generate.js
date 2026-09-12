@@ -1,16 +1,12 @@
-모듈.exports = async (req, res) => {
+module.exports = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ ok: false, error: "POST만 지원" });
 
   let body = {};
-  if (typeof req.body === 'string') {
-    try {
-      body = JSON.parse(req.body || "{}");
-    } catch (e) {
-      return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" });
-    }
-  } else if (req.body && typeof req.body === 'object') {
+  if (typeof req.body === "string") {
+    try { body = JSON.parse(req.body || "{}"); } catch { return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" }); }
+  } else if (req.body && typeof req.body === "object") {
     body = req.body;
   } else {
     return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(잘못된 본문)" });
@@ -18,60 +14,25 @@
 
   const query = (body && body.query && String(body.query).trim()) || "";
   const isDemo = !!body.isDemo;
+  if (!query) return res.status(200).json({ ok: false, failure: false, data: { cards: [], more: null } });
 
-  if (!query) {
-    return res.status(200).json({
-      ok: false, failure: false, data: { cards: [], more: null }
-    });
-  }
-
-  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
-
+  // 데모 모드 우선 처리 (debug-demo.js와 동일 로직)
   if (isDemo) {
     try {
       const result = buildDemoResult(query);
-      return res.status(200).json({
-        ok: true,
-        debug: "generate.handler.demo",
-        data: result,
-        meta: { cardCount: result.data?.cards?.length ?? 0 }
-      });
+      return res.status(200).json({ ok: true, data: result, failure: false });
     } catch (e) {
-      return res.status(200).json({
-        ok: false,
-        failure: true,
-        error: "데모 핸들러 내부 오류",
-        debug: { stage: "handler_catch", msg: String(e) }
-      });
+      return res.status(200).json({ ok: false, failure: true, error: "데모 처리 중 오류", debug: { msg: String(e) } });
     }
   }
 
-  if (!apiKeyPresent) {
-    return res.status(200).json({
-      ok: false,
-      failure: false,
-      data: { cards: [], more: null },
-      note: "연결된 도구에서 관련 기록을 찾지 못했어요.",
-      debug: { stage: "no_key" }
-    });
-  }
-
-  try {
-    const result = await buildResumeCard(query, process.env.UPSTAGE_API_KEY, false);
-    return res.status(200).json({
-      ok: true,
-      data: result,
-      failure: false,
-      debug: { stage: "solar_ok", apiKeyPresent }
-    });
-  } catch (e) {
-    return res.status(200).json({
-      ok: false,
-      failure: true,
-      error: "Solar 호출 중 오류",
-      debug: { stage: "solar_error", msg: String(e) }
-    });
-  }
+  // реальный Solar 호출은 이후 단계에서 재개
+  return res.status(200).json({
+    ok: false,
+    failure: false,
+    data: { cards: [], more: null },
+    note: "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요."
+  });
 };
 
 function buildDemoResult(query) {
@@ -116,7 +77,6 @@ function buildDemoResult(query) {
       more: null
     }
   };
-
   const key = Object.keys(demoMap).find(k => query.includes(k));
   if (!key) {
     return {
@@ -138,14 +98,4 @@ function buildDemoResult(query) {
     };
   }
   return { ok: true, data: demoMap[key], failure: false };
-}
-
-function safeParseJson(content) {
-  let s = content;
-  const start = s.indexOf("{");
-  const end = s.lastIndexOf("}");
-  if (start < 0 || end < start) return null;
-  s = s.slice(start, end + 1);
-  try { return JSON.parse(s); }
-  catch { return null; }
 }
