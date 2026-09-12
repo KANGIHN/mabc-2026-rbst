@@ -1,13 +1,19 @@
-module.exports = async (req, res) => {
+모듈.exports = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ ok: false, error: "POST만 지원" });
 
   let body = {};
-  try {
-    body = JSON.parse(req.body || "{}");
-  } catch (e) {
-    return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" });
+  if (typeof req.body === 'string') {
+    try {
+      body = JSON.parse(req.body || "{}");
+    } catch (e) {
+      return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" });
+    }
+  } else if (req.body && typeof req.body === 'object') {
+    body = req.body;
+  } else {
+    return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(잘못된 본문)" });
   }
 
   const query = (body && body.query && String(body.query).trim()) || "";
@@ -19,12 +25,11 @@ module.exports = async (req, res) => {
     });
   }
 
-  // 데모 모드: 먼저 result만 만들고, res.json 전 단계 확인용으로 응답 구조 단순화
+  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
+
   if (isDemo) {
     try {
       const result = buildDemoResult(query);
-      // 디버깅: result를 바로 던졌을 때 성공하는지 보기 위한 최소 응답
-      // 실패 패턴이 res.json({ ok, data: result }) 단계에서 나는지 확인
       return res.status(200).json({
         ok: true,
         debug: "generate.handler.demo",
@@ -41,7 +46,6 @@ module.exports = async (req, res) => {
     }
   }
 
-  const apiKeyPresent = !!process.env.UPSTAGE_API_KEY;
   if (!apiKeyPresent) {
     return res.status(200).json({
       ok: false,
