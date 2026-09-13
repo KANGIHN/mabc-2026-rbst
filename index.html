@@ -199,17 +199,16 @@ async function runGenerate(query, isDemo){
   genBtn().disabled = false;
   demoBtn().disabled = false;
 
-  if(!data.ok){
-    if(data.failure){
-      resultArea().innerHTML = "<div class='card' style='border-color:#f3d0cf;'><div class='status' style='color:#b3261e;'>"+escapeHtml(data.message)+"</div></div>";
-    }else{
-      resultArea().innerHTML = "<div class='card'><div class='status'>연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
-    }
-    return;
+  // data.cards 기반으로 렌더링/안내 분기 (data.ok에 의존하지 않음)
+  if(data && data.cards && data.cards.length > 0){
+    resultArea().innerHTML = renderCards(data.cards, data.more);
+  }else if(data && !data.ok && data.failure){
+    // 작업 실패
+    resultArea().innerHTML = "<div class='card' style='border-color:#f3d0cf;'><div class='status' style='color:#b3261e;'>"+escapeHtml(data.message)+"</div></div>";
+  }else{
+    // 기록 없음 안내 (data.ok=false 또는 data.ok 없음 + failure=false)
+    resultArea().innerHTML = "<div class='card'><div class='status'>연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
   }
-
-  resultArea().innerHTML = renderCards(data.cards, data.more);
-}
 
 function renderCards(cards, more){
   let html = "<div id='cards'>";
