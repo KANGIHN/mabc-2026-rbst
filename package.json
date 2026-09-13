@@ -1,0 +1,9 @@
+{
+  "name": "mabc-2026-rbst",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {}
+}
