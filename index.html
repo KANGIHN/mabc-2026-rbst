@@ -147,6 +147,7 @@ function setDemoPick(){
 function status(msg, progress=0){
   statusArea().innerHTML = "<div class='status'>"+msg+"<div class='progress'><div style='width:"+progress+"%'></div></div></div>";
 }
+
 function hideStatus(){ statusArea().innerHTML = ""; }
 
 async function runGenerate(query, isDemo){
@@ -167,9 +168,9 @@ async function runGenerate(query, isDemo){
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ query, isDemo })
     });
-    console.log('[runGenerate] fetch 응답:', res.status, res.ok);
+  ;
     const raw = await res.json();
-    console.log('[runGenerate] raw:', JSON.stringify(raw).slice(0,200));
+  .slice(0,200));
 
     // 오차/기록 없음 구분 처리
     if(!res.ok){
