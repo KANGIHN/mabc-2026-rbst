@@ -57,6 +57,10 @@
     🔗 데모 예시로 체험하기 — 아래 예시 업무 중 하나를 누르면, 실제 카드 생성 흐름(입력 → 처리 상태 → 카드 출력)이 돌아가요. 예시 표지는 데모 예시예요.
   </div>
 
+  <div class="note" id="modeNote" style="font-size:12px;color:var(--muted);margin-bottom:12px;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;">
+    현재는 사용자가 직접 입력한 내용(질문/키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여줘요. 연결된 도구 연동 환경이 준비되면, 관련 기록을 찾는 흐름이 추가돼요. 아직 연결이 없는 환경이면, 입력창에 메모·기록 요약을 함께 적어주면 그 기준으로 잡아볼게요.
+  </div>
+
   <div class="demo-pick" id="demoPick"></div>
 
   <div class="card">
@@ -64,6 +68,10 @@
     <div class="examples" id="examples"></div>
     <div class="row">
       <textarea id="input" rows="3" placeholder="이어가고 싶은 일을 질문이나 태그/키워드로 알려줘"></textarea>
+    </div>
+    <label for="supplement" style="margin-top:10px;">(선택) 최근 한 줄 메모·기록 요약·토스 맥락 단서를 붙여넣어줘 — 있으면 더 잘 정리해요</label>
+    <div class="row">
+      <textarea id="supplement" rows="2" placeholder="예: 어제까지 자료 정리 마무리 단계였고, 오늘 검토 회의 예정" style="resize:vertical;"></textarea>
     </div>
     <div class="row2">
       <button class="btn" id="genBtn">카드 생성</button>
@@ -150,15 +158,15 @@ function status(msg, progress=0){
 
 function hideStatus(){ statusArea().innerHTML = ""; }
 
-async function runGenerate(query, isDemo){
-  status("기록을 찾고 있어요…", 30);
+async function runGenerate(query, isDemo, supplement){
+  status("기록을 정리하고 있어요…", 30);
   genBtn().disabled = true;
   demoBtn().disabled = true;
   tryAgainBtn().style.display="none";
   resultArea().innerHTML = "";
 
   await sleep(900);
-  status("기록을 찾고 있어요…", 70);
+  status("기록을 정리하고 있어요…", 70);
 
   // 실제 fetch + 응답 처리
   let data;
@@ -166,7 +174,7 @@ async function runGenerate(query, isDemo){
     const res = await fetch("/api/generate", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ query, isDemo })
+      body: JSON.stringify({ query, isDemo, supplement })
     });
     const raw = await res.json();
 
@@ -178,7 +186,7 @@ async function runGenerate(query, isDemo){
       // 작업 실패 (server failure)
       data = { ok:false, failure:true, message: raw?.error || "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." };
     }else if(!raw?.ok){
-      // 기록 없음: 서버 로직은 정상 동작했으나 관련 기록 없음 (일반 모드)
+      // 기록 없음/정리 불가: 서버 로직은 정상 동작했으나 카드 생성 불가 (일반 모드)
       data = { ok:false, failure:false, message: raw?.note || "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요." };
     }else{
       data = raw.data;
@@ -206,7 +214,11 @@ async function runGenerate(query, isDemo){
     resultArea().innerHTML = "<div class='card' style='border-color:#f3d0cf;'><div class='status' style='color:#b3261e;'>"+escapeHtml(data.message)+"</div></div>";
   }else{
     // 기록 없음 안내 (data.ok=false 또는 data.ok 없음 + failure=false)
-    resultArea().innerHTML = "<div class='card'><div class='status'>연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
+    resultArea().innerHTML = "<div class='card'><div class='status'>
+      <b>기록 없음/정리 불가</b><br>
+      연결된 도구에서 관련 기록을 찾지 못했거나, 입력하신 내용만으로는 카드 정리가 어려웠어요.<br>
+      최근 메모·요약·키워드를 함께 적어주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.
+    </div></div>";
   }
 }
 
@@ -259,7 +271,9 @@ setDemoPick();
 $("genBtn").onclick = ()=>{
   const q = $("input").value.trim();
   if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $("input").focus(); return; }
-  runGenerate(q, false);
+  // 선택 보충 메모(있으면)를 Solar 일반 모드 처리에 함께 넘김
+  const supplement = $("supplement").value.trim() || null;
+  runGenerate(q, false, supplement);
 };
 $("demoBtn").onclick = ()=>{
   const active = document.querySelector("#demoPick button.active");
