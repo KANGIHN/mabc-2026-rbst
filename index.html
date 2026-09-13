@@ -159,23 +159,19 @@ async function runGenerate(query, isDemo){
   await sleep(900);
   status("기록을 찾고 있어요…", 70);
 
+  // 에러/기록 없음 구분 처리
   let data;
-  try{
-    const res = await fetch("/api/generate", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ query, isDemo })
-    });
-    const raw = await res.json();
-    if(!res.ok || !raw?.ok){ throw new Error(raw?.error || "api 오류"); }
+  if(!res.ok){
+    // HTTP 오류 (네트워크/CORS/서버 오류)
+    data = { ok:false, failure:true, message:"기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." };
+  }else if(!raw?.ok && raw?.failure){
+    // 작업 실패 (server failure)
+    data = { ok:false, failure:true, message: raw?.error || "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." };
+  }else if(!raw?.ok){
+    // 기록 없음: 서버 로직은 정상 동작했으나 관련 기록 없음 (일반 모드)
+    data = { ok:false, failure:false, message: raw?.note || "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요." };
+  }else{
     data = raw.data;
-  }catch(e){
-    console.error(e);
-    data = {
-      ok:false,
-      failure: true,
-      message: "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요."
-    };
   }
 
   status("완료", 100);
