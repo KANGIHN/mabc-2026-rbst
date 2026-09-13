@@ -209,6 +209,7 @@ async function runGenerate(query, isDemo){
     // 기록 없음 안내 (data.ok=false 또는 data.ok 없음 + failure=false)
     resultArea().innerHTML = "<div class='card'><div class='status'>연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
   }
+}
 
 function renderCards(cards, more){
   let html = "<div id='cards'>";
