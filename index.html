@@ -549,7 +549,9 @@
   <!-- 입력 카드 (상위 배치) -->
   <div class="input-card">
     <label class="input-label" for="input">이어가고 싶은 일을 질문이나 태그·키워드로 알려주세요</label>
-    <div class="example-pills" id="examples"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+      <button class="btn toggle" id="mabc2027Btn" type="button">MABC 2027 입력</button>
+    </div>
     <div class="input-row">
       <textarea id="input" rows="4" placeholder="이어가고 싶은 일 + 필요하면 메모·기록 요약도 함께 적어주세요 (예: 거의 끝남, 이번 주 금요일 제출)"></textarea>
     </div>
@@ -787,8 +789,8 @@ function renderCard(c){
     parts.push("    <div class='result-block'>");
     parts.push("      <span class='block-label'>근거 펼치기</span>");
     parts.push("      <div class='collapse-wrap'>");
-    parts.push("        <button class='btn toggle' id='r"+c.id+"' type='button'>펼치기</button>");
-    parts.push("        <div id='rd"+c.id+"' class='collapse-content' style='display:none;'>"+escapeHtml(c.reason)+"</div>");
+    parts.push("        <button class='btn toggle' data-collapse='"+c.id+"' type='button'>펼치기</button>");
+    parts.push("        <div data-collapse-target='"+c.id+"' class='collapse-content' style='display:none;'>"+escapeHtml(c.reason)+"</div>");
     parts.push("      </div>");
     parts.push("    </div>");
   }
@@ -812,19 +814,38 @@ function escapeHtml(s){
 setExamples();
 setDemoPick();
 
-$("genBtn").onclick = ()=>{
-  const q = $("input").value.trim();
-  if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $("input").focus(); return; }
+// 근거 펼치기/접기 핸들링 (DOM 삽입 후에도 동작하도록 event delegation)
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-collapse]');
+  if(!btn) return;
+  const id = btn.getAttribute('data-collapse');
+  const target = document.querySelector('[data-collapse-target="'+id+'"]');
+  if(!target) return;
+  const isOpen = target.style.display !== 'none';
+  target.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? '펼치기' : '접기';
+});
+
+$('genBtn').onclick = ()=>{
+  const q = $('input').value.trim();
+  if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $('input').focus(); return; }
   // MABC 2027 관련 질문은 데모 모드(백엔드 demoMap)로 처리 → 카드 생성 흐름 표시
-  const isMABC2027 = q.includes("MABC 2027");
+  const isMABC2027 = q.includes('MABC 2027');
   runGenerate(q, isMABC2027 ? true : false);
 };
-$("demoBtn").onclick = ()=>{
-  const active = document.querySelector("#demoPick .demo-pick-btn.active");
+
+// MABC 2027 버튼: 입력창에 MABC 2027 질문 채우기
+$('mabc2027Btn').onclick = ()=>{
+  $('input').value = 'MABC 2027 관련 업무 재개 카드가 필요해요';
+  $('input').focus();
+};
+
+$('demoBtn').onclick = ()=>{
+  const active = document.querySelector('#demoPick .demo-pick-btn.active');
   if(!active){ showToast("데모 예시 업무를 하나 선택해 주세요."); return; }
   runGenerate(active.textContent.trim(), true);
 };
-$("tryAgainBtn").onclick = ()=>{ $("resultArea").innerHTML = ""; $("input").focus(); };
+$('tryAgainBtn').onclick = ()=>{ $('resultArea').innerHTML = ''; $('input').focus(); };
 </script>
 </body>
 </html>
