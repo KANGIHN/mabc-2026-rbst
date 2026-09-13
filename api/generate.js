@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
   if (isDemo) {
     try {
       const result = buildDemoResult(query);
-      return res.status(200).json({ ok: true, data: result, failure: false });
+      // 프론트 runGenerate는 raw.data에서 data.cards를 찾음 → data는 {cards, more} 구조여야 함
+      return res.status(200).json({ ok: true, data: result.data ?? result, failure: false });
     } catch (e) {
       return res.status(200).json({ ok: false, failure: true, error: "데모 처리 중 오류", debug: { msg: String(e) } });
     }
