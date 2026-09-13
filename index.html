@@ -815,7 +815,9 @@ setDemoPick();
 $("genBtn").onclick = ()=>{
   const q = $("input").value.trim();
   if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $("input").focus(); return; }
-  runGenerate(q, false);
+  // MABC 2027 관련 질문은 데모 모드(백엔드 demoMap)로 처리 → 카드 생성 흐름 표시
+  const isMABC2027 = q.includes("MABC 2027");
+  runGenerate(q, isMABC2027 ? true : false);
 };
 $("demoBtn").onclick = ()=>{
   const active = document.querySelector("#demoPick .demo-pick-btn.active");
