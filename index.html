@@ -168,9 +168,7 @@ async function runGenerate(query, isDemo){
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ query, isDemo })
     });
-  ;
     const raw = await res.json();
-  .slice(0,200));
 
     // 오차/기록 없음 구분 처리
     if(!res.ok){
