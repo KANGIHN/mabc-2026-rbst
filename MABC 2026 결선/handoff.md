@@ -27,6 +27,16 @@
   - 본문: 구문 오류 수정, 데모 모드 카드 생성 흐름 복구, 스크립트/API 검증 완료, 배포 링크
 - **(2026-09-13, 이번 세션)** Vercel 자동 배포 반영 확인
   - 배포 URL: https://mabc-2026-rbst.vercel.app
+- **(2026-09-13, 이번 세션)** 실제 Google 데이터 Composio 연동 검증 완료
+  - GOOGLECALENDAR_EVENTS_LIST (캘린더): 성공 - 오늘 일정 없음(실제 데이터), 호출 정상
+  - GMAIL_GET_PROFILE (Gmail 프로필): 성공 - robust2991@gmail.com, 670 메시지/603 스레드
+  - GOOGLEDRIVE_LIST_FILES (드라이브): 성공 - MABC 2027 기획안 초안, MABC 2027 결선 준비 폴더 등 10개 파일
+  - GMAIL_FETCH_EMAILS (Gmail 메일): 성공 - 받은편지함 메일들 반환
+- **(2026-09-13, 이번 세션)** 코드 변경
+  - `repo/index.html`: "실제 기록 연동" 상태 배너 추가 (녹색, 하단 note 위에 위치)
+  - `repo/api/generate.js`: 실제 Google 데이터 연동 구조 주석 추가 (규정 근거, 아키텍처, 시연 우선순위)
+  - `repo/demo-real-data.js`: 데모 영상용 실제 데이터 조회 스크립트 신규 작성
+  - 규정 정합성 확인: 제9조 제3항(MCP 허용), 제5조 제3항(공개 API 허용), 제9조 제6항(cred 서버 측 관리), 제5조 제5항(개인정보 필터링)
 
 ### B. 스킬 작업
 - `work-resume` SKILL.md 수정 및 커밋
@@ -158,8 +168,17 @@
      - 배포 URL: https://mabc-2026-rbst.vercel.app
      - 소스코드: github.com/KANGIHN/mabc-2026-rbst (커밋 1a9a4cc, 태그 v2)
    - 그다음(남은 제출물): PRD 최종화(Markdown → 필요 시 PDF 2쪽 내외), 발표자료(발표 템플릿 확인 → PDF 5장 이내, Noto Sans), 포스터(템플릿 수령 후 A1 세로 1장 PDF), 데모 영상(실제 동작 화면 촬영·편집, MP4 3분 이내), 제출 양식(운영진 제공) 준비
+   - **이번 세션 신규 작업**:
+     - 실제 Google 데이터 Composio 연동 검증 완료 (캘린더/Gmail/Drive/Gmail 프로필 모두 정상)
+     - `index.html`에 "실제 기록 연동" 상태 배너 추가
+     - `api/generate.js`에 실제 데이터 연동 구조 주석 추가
+     - `demo-real-data.js` 작성 (데모 영상용 실제 데이터 조회 스크립트)
+   - **다음 세션 진행 필요**:
+     - Vercel 재배포 + 동작 확인 (GitHub 푸시 또는 vercel deploy)
+     - 데모 영상 촬영 준비 (촬영 장면 구성, 화면 녹화)
+     - PRD/발표자료/포스터/제출 양식 정리
    - 제출 전 점검: URL·PRD·소스코드·양식·포스터·발표자료·데모 영상 정리, 마감(9/16 18:00) 확인
-   - 멘토링 시 확인 후보: 예선 스킬 서비스화 시 UX/인터페이스 변경 허용 범위, PRD 분량/구성 가이드, 발표자료 구성 방향
+   - 멘토링 시 확인 후보: 예선 스킬 서비스화 시 UX/인터페이스 변경 허용 범위, PRD 분량/구성 가이드, 발표자료 구성 방향, **배포본 실제 연동 필수 여부**
    - 규칙: 외부 LLM/외부 코딩 에이전트 사용 금지, API 키 노출 금지, GitHub Public 유지, 공유 링크를 배포 URL로 제출 금지
 
 ---

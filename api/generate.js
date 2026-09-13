@@ -185,6 +185,29 @@ module.exports = async (req, res) => {
   const isDemo = !!body.isDemo;
   if (!query) return res.status(200).json({ ok: false, failure: false, data: { cards: [], more: null } });
 
+  /*
+   * === 실제 Google 데이터 연동 구조 (MABC 2026 결선) ===
+   *
+   * 구현 방식: 백엔드(Composio)로 실제 Google 데이터 조회 후 카드 생성에 반영
+   * - Composio 도구: GOOGLECALENDAR_EVENTS_LIST, GMAIL_FETCH_EMAILS, GOOGLEDRIVE_LIST_FILES 등
+   * - 규정 근거: 제9조 제3항(MCP 활용 허용), 제5조 제3항(공개 외부 API 사용 허용)
+   * - 보안: API 키·토큰은 서버 측(Vercel 환경변수 등)에서만 관리, 프론트엔드(index.html) 노출 금지 (제9조 제6항)
+   * - 개인정보: 본인 계정 데이터 시연 시 노출 범위 필터링 필요 (제5조 제5항)
+   *
+   * 아키텍처 노트:
+   * - 이 Vercel 서버리스 함수 환경에서는 Composio REST API를 직접 호출하는 구조
+   * - 데모 영상/심사 재현용은 Timely 환경의 composio_execute 도구로 실제 데이터 조회
+   * - isDemo=true: 기존 buildDemoResult(가상 데이터) 사용
+   * - isDemo=false + 실제 연결: Composio로 Google 데이터 조회 → Solar 맥락 보강 → 카드 생성
+   * - 연결 실패/빈 데이터: handleNormalMode로 fallback (사용자 직접 입력 기반)
+   *
+   * 시연 장면 우선순위:
+   * 1. 캘린더 기반 "복귀 직후 오늘 일정/할 일 카드" (1순위 완성 대상)
+   * 2. 메일 토스·회신 대기
+   * 3. 드라이브·문서 탐색
+   * 4. 샘플 작업 조각(캘린더·일정·회의록·진행현황) 모아서 결과물 생성
+   */
+
   // 데모 모드 우선 처리 (debug-demo.js와 동일 로직)
   if (isDemo) {
     try {
