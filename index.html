@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ResumeCard — 업무 재개 카드</title>
+<title>ResumeCard - 이어하기 카드</title>
 <style>
   :root {
     --bg: #f5f6f8;
@@ -65,91 +65,6 @@
     max-width: 560px;
   }
 
-  /* ---------- Status card (상단 안내 통합) ---------- */
-  .status-card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    margin-bottom: 18px;
-    box-shadow: var(--shadow-card);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .status-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .status-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    min-width: 78px;
-    padding-top: 1px;
-  }
-  .status-text {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-  .status-text b {
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .status-card .status-row:first-child .status-text {
-    color: var(--ink);
-  }
-
-  /* ---------- Demo pick (데모 예시 카드) ---------- */
-  .section-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin: 0 0 10px;
-    display: block;
-  }
-  .demo-pick-card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    margin-bottom: 18px;
-    box-shadow: var(--shadow-card);
-  }
-  .demo-pick-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .demo-pick-btn {
-    background: #fff;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-    line-height: 1.3;
-  }
-  .demo-pick-btn:hover {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-  }
-  .demo-pick-btn.active {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-  }
-
   /* ---------- Input card ---------- */
   .input-card {
     background: var(--card);
@@ -165,12 +80,6 @@
     color: var(--ink);
     margin: 0 0 10px;
     display: block;
-  }
-  .input-hint {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 8px;
-    line-height: 1.5;
   }
   .example-pills {
     display: flex;
@@ -271,6 +180,52 @@
     line-height: 1.3;
   }
   .btn.toggle:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+  /* ---------- Demo pick (데모 예시 카드) ---------- */
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 10px;
+    display: block;
+  }
+  .demo-pick-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-card);
+  }
+  .demo-pick-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .demo-pick-btn {
+    background: #fff;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    line-height: 1.3;
+  }
+  .demo-pick-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .demo-pick-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
 
   /* ---------- Status indicator (처리 중/완료 바) ---------- */
   .status-indicator {
@@ -491,6 +446,45 @@
   }
   .summary-card b { color: var(--ink); font-weight: 600; }
 
+  /* ---------- Status card (방식·연동 안내, 설명 성격) ---------- */
+  .status-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .status-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .status-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 78px;
+    padding-top: 1px;
+  }
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .status-text b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .status-card .status-row:first-child .status-text {
+    color: var(--ink);
+  }
+
   /* ---------- Footer ---------- */
   .footer {
     margin-top: 26px;
@@ -541,42 +535,30 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>ResumeCard</h1>
-    <p class="subtitle">이어가고 싶은 일 하나만 알려주면, 흩어진 기록을 다시 훑지 않고도 업무 재개 카드 한 장을 바로 보여줘요.</p>
+    <h1>ResumeCard - 이어하기 카드</h1>
+    <p class="subtitle">이어가고 싶은 일 하나만 알려주시면, 흩어진 기록을 다시 훑지 않고도 업무 재개 카드 한 장을 바로 보여드려요.</p>
   </header>
 
-  <!-- 상단 상태 안내(내비박스) : 입력 방식과 연동 가능한 기록을 한 번에 안내 -->
-  <div class="status-card">
-    <div class="status-row">
-      <span class="status-label">현재 방식</span>
-      <span class="status-text">사용자가 직접 입력한 내용(질문·키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여줘요. 필요하면 입력창에 메모·기록 요약을 함께 적어주세요.</span>
-    </div>
-    <div class="status-row">
-      <span class="status-label">연동 가능한 기록</span>
-      <span class="status-text"><b>Google Calendar · Gmail · Drive</b> — 연결 환경에서 메일·일정·파일 기록을 찾아 카드 생성에 반영할 수 있어요. 데모 예시 체험은 아래 버튼을 사용하세요.</span>
-    </div>
-  </div>
-
-  <!-- 데모 예시 선택 -->
-  <div class="demo-pick-card">
-    <span class="section-label">데모 예시로 체험하기</span>
-    <div class="demo-pick-list" id="demoPick"></div>
-    <div style="font-size:12px;color:var(--muted);margin-top:8px;">예시 업무를 누르면, 실제 카드 생성 흐름(입력 → 처리 상태 → 카드 출력)이 돌아가요. 예시 표지는 데모 예시입니다.</div>
-  </div>
-
-  <!-- 입력 카드 -->
+  <!-- 입력 카드 (행동 먼저) -->
   <div class="input-card">
-    <label class="input-label" for="input">이어가고 싶은 일을 질문이나 태그·키워드로 알려줘</label>
+    <label class="input-label" for="input">이어가고 싶은 일을 질문이나 태그·키워드로 알려주세요</label>
     <div class="example-pills" id="examples"></div>
     <div class="input-row">
-      <textarea id="input" rows="4" placeholder="이어가고 싶은 일 + 필요하면 메모·기록 요약도 함께 적어줘 (예: 거의 끝남, 이번 주 금요일 제출)"></textarea>
+      <textarea id="input" rows="4" placeholder="이어가고 싶은 일 + 필요하면 메모·기록 요약도 함께 적어주세요 (예: 거의 끝남, 이번 주 금요일 제출)"></textarea>
     </div>
     <div class="btn-group">
       <button class="btn" id="genBtn">카드 생성</button>
       <button class="btn ghost" id="demoBtn">데모 예시로 체험하기</button>
       <button class="btn secondary" id="tryAgainBtn" style="display:none;">다른 업무 이어보기</button>
     </div>
-    <div class="input-hint">입력 → 기록을 찾고 있어요… → 카드 출력. 연결 환경이 아니면 사용자가 준 메모·키워드 기준으로, 또는 데모 예시로 체험할 수 있어요.</div>
+    <div class="input-hint" style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5;">입력 → 기록을 찾고 있어요… → 카드 출력. 연결 환경이 아니면 주신 메모·키워드 기준으로, 또는 데모 예시로 체험해 보실 수 있어요.</div>
+  </div>
+
+  <!-- 데모 예시 선택 -->
+  <div class="demo-pick-card">
+    <span class="section-label">데모 예시로 체험하기</span>
+    <div class="demo-pick-list" id="demoPick"></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;">예시 업무를 누르면 실제 카드 생성 흐름(입력 → 처리 상태 → 카드 출력)을 체험해 보실 수 있어요. 예시 표지는 데모 예시입니다.</div>
   </div>
 
   <!-- 처리 상태 표시 -->
@@ -585,10 +567,22 @@
   <!-- 결과 카드 영역 -->
   <div id="resultArea"></div>
 
+  <!-- 방식·연동 안내 (설명, 하단으로 배치) -->
+  <div class="status-card">
+    <div class="status-row">
+      <span class="status-label">현재 방식</span>
+      <span class="status-text">사용자가 직접 입력한 내용(질문·키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여드려요. 필요하면 입력창에 메모·기록 요약을 함께 적어주세요.</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">연동 가능한 기록</span>
+      <span class="status-text"><b>Google Calendar · Gmail · Drive</b> — 연결 환경에서 메일·일정·파일 기록을 찾아 카드 생성에 반영할 수 있어요. 데모 예시는 위의 체험하기 버튼을 사용해 보세요.</span>
+    </div>
+  </div>
+
   <!-- 하단 안내 -->
   <div class="footer">
-    <div class="footer-text"><strong>처음 온 사람도 바로 써요</strong> — 계정·저장값 없이 URL로 들어오세요.</div>
-    <div class="footer-text">결과물은 하나의 <strong>업무 재개 카드</strong>로 나와요. 여러 건이 있으면 우선 카드가 먼저 나오고, 그 외 건수도 함께 안내해요.</div>
+    <div class="footer-text"><strong>처음 오신 분도 바로 써요</strong> — 계정이나 저장값 없이 URL로 들어오시면 돼요.</div>
+    <div class="footer-text">결과물은 하나의 <strong>업무 재개 카드</strong>로 나와요. 여러 건이 있으면 우선 카드가 먼저 나오고, 그 외 건수도 함께 안내해 드려요.</div>
   </div>
 </div>
 
@@ -703,7 +697,7 @@ async function runGenerate(query, isDemo){
     }else if(!raw?.ok && raw?.failure){
       data = { ok:false, failure:true, message: raw?.error || "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." };
     }else if(!raw?.ok){
-      data = { ok:false, failure:false, message: raw?.note || "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요." };
+      data = { ok:false, failure:false, message: raw?.note || "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 보실 수 있어요." };
     }else{
       data = raw.data;
     }
@@ -751,7 +745,7 @@ function renderCards(cards, more){
   let html = "";
   cards.forEach(c=>{ html += renderCard(c); });
   if(more){
-    html += "<div class='summary-card'>그 외 <b>"+escapeHtml(more.count)+"건</b> 더 있음 — 우선 카드가 먼저 나왔어요.</div>";
+    html += "<div class='summary-card'>그 외 <b>"+escapeHtml(more.count)+"건</b> 더 있어요 — 우선 카드가 먼저 나왔어요.</div>";
   }
   return html;
 }
@@ -813,7 +807,6 @@ function escapeHtml(s){
   return String(s==null?"":s).replace(/[&<>"']/g, ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
 }
 
-$("examples").innerHTML = "";
 setExamples();
 setDemoPick();
 
