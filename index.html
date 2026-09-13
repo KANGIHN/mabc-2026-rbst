@@ -166,7 +166,7 @@ function status(msg, progress=0){
 
 function hideStatus(){ statusArea().innerHTML = ""; }
 
-function runGenerate(query, isDemo, supplement){
+async function runGenerate(query, isDemo, supplement){
   status("기록을 정리하고 있어요…", 30);
   genBtn().disabled = true;
   demoBtn().disabled = true;
