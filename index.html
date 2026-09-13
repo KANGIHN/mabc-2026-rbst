@@ -211,11 +211,7 @@ async function runGenerate(query, isDemo){
     resultArea().innerHTML = "<div class='card' style='border-color:#f3d0cf;'><div class='status' style='color:#b3261e;'>"+escapeHtml(data.message)+"</div></div>";
   }else{
     // 기록 없음 안내 (data.ok=false 또는 data.ok 없음 + failure=false)
-    resultArea().innerHTML = "<div class='card'><div class='status'>
-      <b>기록 없음/정리 불가</b><br>
-      연결된 도구에서 관련 기록을 찾지 못했거나, 입력하신 내용만으로는 카드 정리가 어려웠어요.<br>
-      최근 메모·요약·키워드를 함께 적어주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.
-    </div></div>";
+    resultArea().innerHTML = "<div class='card'><div class='status'><b>기록 없음/정리 불가</b><br>연결된 도구에서 관련 기록을 찾지 못했거나, 입력하신 내용만으로는 카드 정리가 어려웠어요.<br>최근 메모·요약·키워드를 함께 적어주시면 그 기준으로 잡아볼게요. 아니면 데모 예시로 체험해 볼 수 있어요.</div></div>";
   }
 }
 
