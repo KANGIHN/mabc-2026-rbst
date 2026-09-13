@@ -58,7 +58,7 @@
   </div>
 
   <div class="note" id="modeNote" style="font-size:12px;color:var(--muted);margin-bottom:12px;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;">
-    현재는 사용자가 직접 입력한 내용(질문/키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여줘요. 연결된 도구 연동 환경이 준비되면, 관련 기록을 찾는 흐름이 추가돼요. 아직 연결이 없는 환경이면, 입력창에 메모·기록 요약을 함께 적어주면 그 기준으로 잡아볼게요.
+    현재는 사용자가 직접 입력한 내용(질문/키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여줘요. 필요하면 입력창에 메모·기록 요약을 함께 적어주세요. 연결된 도구 연동 환경이 준비되면, 관련 기록을 찾는 흐름이 추가돼요.
   </div>
 
   <div class="demo-pick" id="demoPick"></div>
@@ -67,11 +67,7 @@
     <label for="input">이어가고 싶은 일을 질문이나 태그/키워드로 알려줘</label>
     <div class="examples" id="examples"></div>
     <div class="row">
-      <textarea id="input" rows="3" placeholder="이어가고 싶은 일을 질문이나 태그/키워드로 알려줘"></textarea>
-    </div>
-    <label for="supplement" style="margin-top:10px;">(선택) 최근 한 줄 메모·기록 요약·토스 맥락 단서를 붙여넣어줘 — 있으면 더 잘 정리해요</label>
-    <div class="row">
-      <textarea id="supplement" rows="2" placeholder="예: 어제까지 자료 정리 마무리 단계였고, 오늘 검토 회의 예정" style="resize:vertical;"></textarea>
+      <textarea id="input" rows="4" placeholder="이어가고 싶은 일 + 필요하면 메모·기록 요약도 함께 적어줘 (예: 거의 끝남, 이번 주 금요일 제출)"></textarea>
     </div>
     <div class="row2">
       <button class="btn" id="genBtn">카드 생성</button>
@@ -141,7 +137,7 @@ function setDemoPick(){
   el.innerHTML = "";
   DEMO.forEach((d,i)=>{
     const b=document.createElement("button");
-    b.textContent = d.name+"("+d.note+")";
+    b.textContent = d.name;
     b.onclick=()=>{
       document.querySelectorAll("#demoPick button").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
@@ -150,6 +146,7 @@ function setDemoPick(){
     };
     el.appendChild(b);
   });
+  el.style.display = "flex";
 }
 
 function status(msg, progress=0){
@@ -158,7 +155,7 @@ function status(msg, progress=0){
 
 function hideStatus(){ statusArea().innerHTML = ""; }
 
-async function runGenerate(query, isDemo, supplement){
+async function runGenerate(query, isDemo){
   status("기록을 정리하고 있어요…", 30);
   genBtn().disabled = true;
   demoBtn().disabled = true;
@@ -174,7 +171,7 @@ async function runGenerate(query, isDemo, supplement){
     const res = await fetch("/api/generate", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ query, isDemo, supplement })
+      body: JSON.stringify({ query, isDemo })
     });
     const raw = await res.json();
 
@@ -271,14 +268,12 @@ setDemoPick();
 $("genBtn").onclick = ()=>{
   const q = $("input").value.trim();
   if(!q){ showToast("이어가고 싶은 일을 입력해 주세요."); $("input").focus(); return; }
-  // 선택 보충 메모(있으면)를 Solar 일반 모드 처리에 함께 넘김
-  const supplement = $("supplement").value.trim() || null;
-  runGenerate(q, false, supplement);
+  runGenerate(q, false);
 };
 $("demoBtn").onclick = ()=>{
   const active = document.querySelector("#demoPick button.active");
   if(!active){ showToast("데모 예시 업무를 하나 선택해 주세요."); return; }
-  runGenerate(active.textContent.split("(")[0].trim(), true);
+  runGenerate(active.textContent.trim(), true);
 };
 tryAgainBtn().onclick = ()=>{ resultArea().innerHTML=""; $("input").focus(); };
 </script>
