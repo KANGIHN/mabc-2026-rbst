@@ -656,6 +656,7 @@ function setExamples(){
 
 function setDemoPick(){
   const el = $("demoPick");
+  if(!el) return;
   el.innerHTML = "";
   DEMO.forEach((d,i)=>{
     const b = document.createElement("button");
@@ -668,6 +669,25 @@ function setDemoPick(){
       $("input").value = d.name;
     };
     el.appendChild(b);
+  });
+}
+
+// MABC 2027 Pills: 각 Pills 클릭 시 해당 시나리오 질문 자동 입력 + 카드 생성/데모 체험 연동
+function setupMABC2027Pills(){
+  const pills = [
+    { id:'mabc2027-pill-1', question:'MABC 2027 대회 준비 어디까지 했지?', label:'대회 준비 어디까지' },
+    { id:'mabc2027-pill-2', question:'MABC 2027 발표 자료 초안 작성', label:'발표 자료 초안 작성' },
+    { id:'mabc2027-pill-3', question:'MABC 2027 제출 전 최종 점검', label:'제출 전 최종 점검' }
+  ];
+  pills.forEach(p=>{
+    const el = document.getElementById(p.id);
+    if(!el) return;
+    el.onclick = ()=>{
+      $('input').value = p.question;
+      $('input').focus();
+      // 카드 생성/데모 체험 연동: isDemo=true로 runGenerate 호출
+      runGenerate(p.question, true);
+    };
   });
 }
 
@@ -819,8 +839,8 @@ function escapeHtml(s){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  // 1) 예시 Pills 설정 (하단 데모픽 영역)
-  setExamples();
+  // 1) 예시 Pills 설정 — 'examples' 요소 미존재로 건너뜀
+  // setExamples();
   // 2) 하단 데모픽 버튼 생성
   setDemoPick();
   // 3) MABC 2027 Pills 클릭 핸들러 등록
