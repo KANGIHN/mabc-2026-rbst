@@ -157,7 +157,9 @@
 | 14 | 현장 발표 준비 | 발표 8분 + Q&A 3분 리허설 | 미완료 | 09/19 | |
 | 15 | 실제 Google 데이터 Composio 연동 확인 | GOOGLECALENDAR_EVENTS_LIST, GMAIL_FETCH_EMAILS, GOOGLEDRIVE_LIST_FILES, GMAIL_GET_PROFILE 호출 성공 | 완료 | 09/13 | 캘린더·이메일·드라이브·Gmail 프로필 모두 정상 반환 확인 |
 | 16 | /api/generate.js + index.html 확장 | 실제 데이터 연동 구조 주석, 연결 상태 표시(그린 배너) 추가 | 완료 | 09/13 | index.html에 "실제 기록 연동" 상태 배너 추가, generate.js에 아키텍처 주석 추가. **추가(9/14)**: 근거 펼치기 동작 복구(data-collapse 속성 기반 + event delegation), MABC 2027 Pills 3개(입력창 위) 및 클릭 시 질문 자동 입력 + 카드 생성 연동, 하단 demo-pick-card 복구 및 demo-pick-btn 3개 생성, DOMContentLoaded 이벤트로 초기화 시점 보장, setDemoPick() null guard, setupMABC2027Pills() 함수 정의 추가, genBtn.onclick에서 MABC 2027 질문 포함 시 isDemo=true 처리. |
-| 18 | 프론트엔드 UI/기능 수정 (9/14 세션) | 근거 펼치기, MABC 2027 Pills 3개, 하단 데모픽 복구, 초기화 시점, 함수 정의, isDemo 처리 | 완료 | 09/14 | 상기 #16 메모 참조. Vercel 배포 반영 확인(HTTP 200), HTML 요소 존재 확인(data-collapse 5개, demo-pick-btn 6개, mabc2027-pill-1/2/3 각 1개), API 응답 확인 완료(3개 시나리오 + "MABC 2027 진행중" 입력 모두 ok:true, cards:1). |
+| 18 | 프론트엔드 UI/기능 수정 (9/14 세션) | 근거 펼치기, MABC 2027 Pills 3개, 하단 데모픽 복구, 초기화 시점, 함수 정의, isDemo 처리 | 완료 | 09/14 | 상기 #16 메모 참조. Vercel 배포 반영 확인(HTTP 200), HTML 요소 존재 확인(data-collapse 5개, demo-pick-btn 6개, mabc2027-pill-1/2/3 각 1개), API 응답 확인 완료(3개 시나리오 + "MABC 2027 진행중" 입력 모두 ok:true, cards:1).
+
+**추가(9/16)**: 심사위원 데모 샘플 교체 — 기존 MBCD 프로젝트/MABC 2026 결선 준비/프로젝트 전환 정리 3종을 실제 사용 맥락 4종(수업 진도 확인·오후조 인계 업무·신입사원 온보딩·휴가 중 인계 업무)으로 교체. MABC 2027 3종은 MCP 연결 시연·발표용으로 untouched 유지. 프론트 DEMO 배열 4종 반영, DEMO_RECORDS 제거, 백엔드 demoMap/debug-demo.js 4종 동기화, 기존 데모 백업(demo-map-backup.js) 생성. 백엔드 검증 완료(4종 + MABC 2027 모두 기대값 일치). |
 
 상태 값 예시: 미완료 / 진행중 / 완료 / 보류(확인 필요)
 
@@ -201,4 +203,4 @@
 
 ---
 
-*최종 수정: 2026-09-14 (세션: 근거 펼치기 복구, MABC 2027 Pills 3개 추가, 하단 데모픽 복구, DOMContentLoaded 초기화, setDemoPick null guard, setupMABC2027Pills 함수 정의, MABC 2027 질문 isDemo=true 처리, Vercel 배포 확인, API 응답 확인 완료)*
+*최종 수정: 2026-09-16 (세션: 심사위원 데모 샘플 교체 — 기존 MBCD/MABC 2026 결선 준비/프로젝트 전환 정리 3종 → 실제 사용 맥락 4종(수업 진도 확인·오후조 인계 업무·신입사원 온보딩·휴가 중 인계 업무)으로 교체. MABC 2027 3종은 MCP 연결 시연·발표용 untouched 유지. 프론트 DEMO 배열 4종 반영, DEMO_RECORDS 제거, 백엔드 demoMap/debug-demo.js 4종 동기화, 기존 데모 백업(demo-map-backup.js) 생성. 백엔드 검증 완료(4종 + MABC 2027 모두 기대값 일치). GitHub 커밋·푸시 완료 후 Vercel 배포 확인 예정.)*
