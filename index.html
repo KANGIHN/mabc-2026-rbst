@@ -849,7 +849,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   $('genBtn').onclick = ()=>{
     const q = $('input').value.trim();
     if(!q){ showToast('이어가고 싶은 일을 입력해 주세요.'); $('input').focus(); return; }
-    runGenerate(q, false);
+    const isMABC2027 = q.includes('MABC 2027');
+    runGenerate(q, isMABC2027 ? true : false);
   };
   $('demoBtn').onclick = ()=>{
     const active = document.querySelector('#demoPick .demo-pick-btn.active');
