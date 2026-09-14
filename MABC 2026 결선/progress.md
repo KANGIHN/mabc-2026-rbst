@@ -145,7 +145,7 @@
 | 2 | 미확정 항목 정리 | 포스터 템플릿, 제출 양식, 발표 템플릿 링크 등 | 미완료 | 멘토링 전 | |
 | 3 | 문제 정의·기획 방향 확정 | — | 미완료 | 멘토링 전 | 예선 스킬과의 연결 포함 |
 | 4 | MVP 범위 확정 | 포함/제외 기능, 핵심 로직 유지 여부 | 미완료 | 멘토링 전 | |
-| 5 | 개발 착수 | 서비스 MVP 구현 | 완료 | 09/16 18:00 | 데모버전(구문 오류 수정 + 데모 모드 카드 생성 흐름 복구) 구현 완료, v2 릴리스 태깅 완료 |
+| 5 | 개발 착수 | 서비스 MVP 구현 | 완료 | 09/16 18:00 | 데모버전(구문 오류 수정 + 데모 모드 카드 생성 흐름 복구) 구현 완료, v2 릴리스 태깅 완료. **추가(9/14)**: 근거 펼치기 동작 복구(data-collapse 속성 + event delegation), MABC 2027 Pills 3개 추가 및 버튼 연동(하단 데모픽 복구 포함), DOMContentLoaded 초기화 시점 보장, setDemoPick null guard + setupMABC2027Pills 함수 정의 추가, MABC 2027 질문 입력 시 isDemo=true로 카드 생성 연동. Vercel 배포 확인(HTTP 200), /api/generate 응답 확인(ok:true, cards:1, reason:True) 완료. |
 | 6 | 공개 URL 배포 | Vercel 배포 URL, 배포본 식별 정보 | 완료 | 09/16 18:00 | https://mabc-2026-rbst.vercel.app |
 | 7 | 소스코드 공개 | GitHub Public 레포, 커밋 해시 | 완료 | 09/16 18:00 | github.com/KANGIHN/mabc-2026-rbst / 커밋 1a9a4cc / 태그 v2 |
 | 8 | PRD 작성 | PDF 또는 Markdown, 2쪽 내외 | 미완료 | 09/16 18:00 | PRD-초안.md 있음, 최종 포맷 확정 필요 |
@@ -156,8 +156,8 @@
 | 13 | 제출 완료 | URL·PRD·소스코드·양식·포스터·발표자료·데모 영상 | 미완료 | 09/16 18:00 | |
 | 14 | 현장 발표 준비 | 발표 8분 + Q&A 3분 리허설 | 미완료 | 09/19 | |
 | 15 | 실제 Google 데이터 Composio 연동 확인 | GOOGLECALENDAR_EVENTS_LIST, GMAIL_FETCH_EMAILS, GOOGLEDRIVE_LIST_FILES, GMAIL_GET_PROFILE 호출 성공 | 완료 | 09/13 | 캘린더·이메일·드라이브·Gmail 프로필 모두 정상 반환 확인 |
-| 16 | /api/generate.js + index.html 확장 | 실제 데이터 연동 구조 주석, 연결 상태 표시(그린 배너) 추가 | 완료 | 09/13 | index.html에 "실제 기록 연동" 상태 배너 추가, generate.js에 아키텍처 주석 추가 |
-| 17 | 데모 영상용 실제 데이터 조회 스크립트 | demo-real-data.js 작성 | 완료 | 09/13 | Timely 환경 composio_execute 기반 실제 데이터 조회 + Solar 카드 생성 흐름 스크립트 |
+| 16 | /api/generate.js + index.html 확장 | 실제 데이터 연동 구조 주석, 연결 상태 표시(그린 배너) 추가 | 완료 | 09/13 | index.html에 "실제 기록 연동" 상태 배너 추가, generate.js에 아키텍처 주석 추가. **추가(9/14)**: 근거 펼치기 동작 복구(data-collapse 속성 기반 + event delegation), MABC 2027 Pills 3개(입력창 위) 및 클릭 시 질문 자동 입력 + 카드 생성 연동, 하단 demo-pick-card 복구 및 demo-pick-btn 3개 생성, DOMContentLoaded 이벤트로 초기화 시점 보장, setDemoPick() null guard, setupMABC2027Pills() 함수 정의 추가, genBtn.onclick에서 MABC 2027 질문 포함 시 isDemo=true 처리. |
+| 18 | 프론트엔드 UI/기능 수정 (9/14 세션) | 근거 펼치기, MABC 2027 Pills 3개, 하단 데모픽 복구, 초기화 시점, 함수 정의, isDemo 처리 | 완료 | 09/14 | 상기 #16 메모 참조. Vercel 배포 반영 확인(HTTP 200), HTML 요소 존재 확인(data-collapse 5개, demo-pick-btn 6개, mabc2027-pill-1/2/3 각 1개), API 응답 확인 완료(3개 시나리오 + "MABC 2027 진행중" 입력 모두 ok:true, cards:1). |
 
 상태 값 예시: 미완료 / 진행중 / 완료 / 보류(확인 필요)
 
@@ -201,4 +201,4 @@
 
 ---
 
-*최종 수정: 2026-09-13 (세션: 데모버전 구현 완료, v2 릴리스 태깅 완료)*
+*최종 수정: 2026-09-14 (세션: 근거 펼치기 복구, MABC 2027 Pills 3개 추가, 하단 데모픽 복구, DOMContentLoaded 초기화, setDemoPick null guard, setupMABC2027Pills 함수 정의, MABC 2027 질문 isDemo=true 처리, Vercel 배포 확인, API 응답 확인 완료)*
