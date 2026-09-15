@@ -15,11 +15,15 @@
 - 프로덕션 URL 직접 호출로 최종 동작을 확인한다.
 
 ## 4. 세션 시작 시
-1. `git fetch origin`
-2. `git checkout main && git pull`
+1. 작업 디렉토리(`repo/`)가 없으면 저장소부터 클론한다.
+   - `git clone https://github.com/KANGIHN/mabc-2026-rbst.git repo`
+   - 디렉토리 이름은 **반드시 `repo/`** 로 한다.
+2. 디렉토리가 이미 있으면 다음 순서로 최신 상태로 맞춘다.
+   - `git fetch origin`
+   - `git checkout main && git pull`
 3. 작업 브랜치는 main 기반으로 생성
 
-## 5. 금지
-- master 브랜치 기반 작업 금지
-- Vercel CLI 직접 배포 금지
-- 기준 브랜치가 아닌 상태에서 배포 push 금지
+## 6. 작업 종료 시
+- 작업을 마쳤으면 반드시 **push**까지 한다.
+- 푸시하지 않으면 다음 세션에서 이전 작업을 찾지 못하는 경우가 생긴다.
+- 푸시 전 로컬과 원격의 최신 상태를 확인하고, 필요하면 최신 커밋을 반영해 충돌을 정리한 뒤 푸시한다.
