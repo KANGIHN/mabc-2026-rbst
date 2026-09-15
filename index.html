@@ -564,6 +564,7 @@
       <button class="btn secondary" id="tryAgainBtn" style="display:none;">다른 업무 이어보기</button>
     </div>
     <div class="input-hint">입력 → 기록을 찾고 있어요… → 카드 출력. 연결 환경이 아니면 사용자가 준 메모·키워드 기준으로, 또는 데모 예시로 체험해 보실 수 있어요.</div>
+    <div class="input-hint" style="color:var(--warn);margin-top:4px;">🔒 입력하신 내용은 카드 생성 요청 단위로만 처리되며, 서버에 저장되지 않아요.</div>
   </div>
 
   <!-- 데모 예시 선택 (상위 배치) -->
@@ -829,8 +830,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
   $('genBtn').onclick = ()=>{
     const q = $('input').value.trim();
     if(!q){ showToast('이어가고 싶은 일을 입력해 주세요.'); $('input').focus(); return; }
-    const isMABC2027 = q.includes('MABC 2027');
-    runGenerate(q, isMABC2027 ? true : false);
+    // 사건번호 포함 시 데모 모드로 자동 연결 (미일치 시 안내)
+    const hasCaseNum = /\d{4}가단\d+|\d{4}나\d+/.test(q);
+    runGenerate(q, hasCaseNum ? true : false);
   };
   $('demoBtn').onclick = ()=>{
     const active = document.querySelector('#demoPick .demo-pick-btn.active');
