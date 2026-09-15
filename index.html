@@ -745,13 +745,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // 2) MABC 2027 Pills 클릭 핸들러 등록
   setupMABC2027Pills();
   // 3) 카드 생성 / 다시 시도 버튼 핸들러
-  $('genBtn').onclick = ()=>{
+  function generateFromInput(){
     const q = $('input').value.trim();
     if(!q){ showToast('이어가고 싶은 일을 입력해 주세요.'); $('input').focus(); return; }
     // 사건번호 포함 시 데모 모드로 자동 연결 (미일치 시 안내)
-    const hasCaseNum = /\d{4}가단\d+|\d{4}나\d+/.test(q);
+    // 띄어쓰기에 관계없이 사건번호 인식 (예: 2026가단12345 = 2026 가 단 12345)
+    const qNoSpace = q.replace(/\s+/g, '');
+    const hasCaseNum = /\d{4}가단\d+|\d{4}나\d+/.test(qNoSpace);
     runGenerate(q, hasCaseNum ? true : false);
-  };
+  }
+  $('genBtn').onclick = generateFromInput;
+  // 엔터키 입력 시 카드 생성 버튼 클릭과 동일하게 동작
+  $('input').addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){ e.preventDefault(); generateFromInput(); }
+  });
   $('tryAgainBtn').onclick = ()=>{ $('resultArea').innerHTML = ''; $('input').focus(); };
 });
 
