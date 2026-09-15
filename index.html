@@ -665,8 +665,7 @@ function setupMABC2027Pills(){
     el.onclick = ()=>{
       $('input').value = p.question;
       $('input').focus();
-      // 카드 생성/데모 체험 연동: isDemo=true로 runGenerate 호출
-      runGenerate(p.question, true);
+      // 카드 생성은 하지 않음 — 사용자가 '카드 생성' 버튼을 눌러야 생성됨
     };
   });
 }
@@ -855,3 +854,4 @@ document.addEventListener('click', (e)=>{
 </script>
 </body>
 </html>
+
