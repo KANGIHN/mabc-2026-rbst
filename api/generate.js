@@ -50,12 +50,15 @@ function buildDemoResult(query) {
     }
   };
 
-  // 1) 데모 맵 키와 직접 포함 매칭 시도
-  let key = Object.keys(demoMap).find(k => query.includes(k));
+  // 띄어쓰기에 관계없이 사건번호 매칭 (예: 2026가단12345 = 2026 가 단 12345)
+  const queryNoSpace = query.replace(/\s+/g, '');
+
+  // 1) 데모 맵 키와 직접 포함 매칭 시도 (띄어쓰기 제거 전후 모두)
+  let key = Object.keys(demoMap).find(k => query.includes(k) || queryNoSpace.includes(k));
 
   // 2) 직접 매칭 없으면 사건번호 추출 후 재매칭
   if (!key) {
-    const caseNumMatch = query.match(/(\d{4}[가단나]\d+)/);
+    const caseNumMatch = queryNoSpace.match(/(\d{4}[가단나]\d+)/);
     if (caseNumMatch) {
       const caseNo = caseNumMatch[1];
       key = Object.keys(demoMap).find(k => k.includes(caseNo));
