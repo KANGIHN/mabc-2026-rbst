@@ -53,15 +53,25 @@ function buildDemoResult(query) {
   // 띄어쓰기에 관계없이 사건번호 매칭 (예: 2026가단12345 = 2026 가 단 12345)
   const queryNoSpace = query.replace(/\s+/g, '');
 
-  // 1) 데모 맵 키와 직접 포함 매칭 시도 (띄어쓰기 제거 전후 모두)
-  let key = Object.keys(demoMap).find(k => query.includes(k) || queryNoSpace.includes(k));
+  // 데모 맵 키도 공백 제거한 버전으로 비교용 맵 구성 (원래 키는 결과 반환용)
+  const demoMapNoSpace = {};
+  Object.keys(demoMap).forEach(k => { demoMapNoSpace[k.replace(/\s+/g, '')] = k; });
+
+  // 1) 데모 맵 키와 직접 포함 매칭 시도 (쿼리 전후 + 키 공백제거 버전)
+  let key = null;
+  if (Object.keys(demoMap).find(k => query.includes(k))) {
+    key = Object.keys(demoMap).find(k => query.includes(k));
+  } else if (Object.keys(demoMapNoSpace).find(k => queryNoSpace.includes(k) || k.includes(queryNoSpace))) {
+    key = demoMapNoSpace[Object.keys(demoMapNoSpace).find(k => queryNoSpace.includes(k) || k.includes(queryNoSpace))];
+  }
 
   // 2) 직접 매칭 없으면 사건번호 추출 후 재매칭
   if (!key) {
     const caseNumMatch = queryNoSpace.match(/(\d{4}[가단나]\d+)/);
     if (caseNumMatch) {
       const caseNo = caseNumMatch[1];
-      key = Object.keys(demoMap).find(k => k.includes(caseNo));
+      key = Object.keys(demoMap).find(k => k.includes(caseNo)) ||
+           demoMapNoSpace[Object.keys(demoMapNoSpace).find(k => k.includes(caseNo))];
     }
   }
 
