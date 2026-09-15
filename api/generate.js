@@ -49,35 +49,29 @@ function buildDemoResult(query) {
       more: { count: 3 }
     }
   };
+
+  // 1) 데모 맵 키와 직접 포함 매칭 시도
   let key = Object.keys(demoMap).find(k => query.includes(k));
-  // 변호사 사건번호 포함 시 해당 사건으로 자동 매핑
-  if (!key && /\d{4}가단\d+/.test(query)) {
-    if (query.includes("67890")) key = "2026가단67890 임대차보증금";
-    else if (query.includes("12345")) key = "2026가단12345 손해배상 청구";
-    else key = "2026가단12345 손해배상";
+
+  // 2) 직접 매칭 없으면 사건번호 추출 후 재매칭
+  if (!key) {
+    const caseNumMatch = query.match(/(\d{4}[가단나]\d+)/);
+    if (caseNumMatch) {
+      const caseNo = caseNumMatch[1];
+      key = Object.keys(demoMap).find(k => k.includes(caseNo));
+    }
   }
-  if (!key && /\d{4}나\d+/.test(query)) {
-    key = "2026나54321 공사대금";
-  }
+
+  // 3) 매칭되는 데모 시나리오가 없으면 "기록을 찾지 못함"으로 처리
   if (!key) {
     return {
       ok: false,
       failure: false,
-      data: {
-        cards: [{
-          id: 1,
-          name: query || "선택한 업무",
-          kind: "일반 진행 업무",
-          state: "확인 필요",
-          stateText: "데모 예시 기록 기준으로 상태를 확인 중이에요. 정확한 상태는 실제 기록을 봐야 판단할 수 있어요.",
-          action: { line: "관련 기록을 확인한 뒤 첫 행동을 정하세요.", reason: "현재 주어진 단서만으로는 확정하기 어려워요." },
-          warn: "데모 예시: 실제 연동 환경이 아닌 경우, 예시 데이터로 카드 생성 흐름을 보여줘요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요.",
-          reason: "데모 예시: 예시 데이터로 카드 생성 흐름을 보여줘요."
-        }],
-        more: null
-      }
+      data: { cards: [], more: null },
+      note: "입력하신 내용과 일치하는 데모 기록을 찾지 못했어요. 데모 예시로 체험하려면 아래 예시 버튼을 사용해 보세요."
     };
   }
+
   return { ok: true, data: demoMap[key], failure: false };
 }
 
