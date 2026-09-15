@@ -497,7 +497,7 @@
 <div class="wrap">
   <header>
     <h1>갈피 - ResumeCard</h1>
-    <p class="subtitle">이어가고 싶은 일 하나만 알려주시면, 흩어진 기록을 다시 훑지 않고도 업무 재개 카드 한 장을 바로 보여드려요.</p>
+    <p class="subtitle">이어가고 싶은 사건 하나만 알려주시면, 흩어진 기록을 다시 훑지 않고도 사건 재개 카드 한 장을 바로 보여드려요.</p>
   </header>
 
   <!-- 입력 카드 (상위 배치) -->
@@ -514,9 +514,9 @@
     </div>
     <div class="btn-group">
       <button class="btn" id="genBtn">카드 생성</button>
-      <button class="btn secondary" id="tryAgainBtn" style="display:none;">다른 업무 이어보기</button>
+      <button class="btn secondary" id="tryAgainBtn" style="display:none;">다른 사건 이어보기</button>
     </div>
-    <div class="input-hint">입력 → 기록을 찾고 있어요… → 카드 출력. 연결 환경이 아니면 사용자가 준 메모·키워드 기준으로 정리해 드려요.</div>
+    <div class="input-hint">입력 → 기록을 정리하고 있어요… → 사건 재개 카드</div>
     <div class="input-hint" style="color:var(--warn);margin-top:4px;">🔒 입력하신 내용은 카드 생성 요청 단위로만 처리되며, 서버에 저장되지 않아요.</div>
   </div>
 
@@ -532,16 +532,12 @@
       <span class="status-label">현재 방식</span>
       <span class="status-text">사용자가 직접 입력한 내용(질문·키워드 + 필요 시 메모·기록 요약)을 기준으로 카드 생성 흐름을 보여드려요. 필요하면 입력창에 메모·기록 요약을 함께 적어주세요.</span>
     </div>
-    <div class="status-row">
-      <span class="status-label">연동 가능한 기록</span>
-      <span class="status-text"><b>Google Calendar · Gmail · Drive</b> — 연결 환경에서 메일·일정·파일 기록을 찾아 카드 생성에 반영할 수 있어요.</span>
-    </div>
   </div>
 
   <!-- 하단 안내 -->
   <div class="footer">
     <div class="footer-text"><strong>처음 오신 분도 바로 써요</strong> — 계정이나 저장값 없이 URL로 들어오시면 돼요.</div>
-    <div class="footer-text">결과물은 하나의 <strong>업무 재개 카드</strong>로 나와요. 여러 건이 있으면 우선 카드가 먼저 나오고, 그 외 건수도 함께 안내해 드려요.</div>
+    <div class="footer-text">결과물은 하나의 <strong>사건 재개 카드</strong>로 나와요. 여러 건이 있으면 우선 카드가 먼저 나오고, 그 외 건수도 함께 안내해 드려요.</div>
   </div>
 </div>
 
@@ -747,7 +743,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // 3) 카드 생성 / 다시 시도 버튼 핸들러
   function generateFromInput(){
     const q = $('input').value.trim();
-    if(!q){ showToast('이어가고 싶은 일을 입력해 주세요.'); $('input').focus(); return; }
+    if(!q){ showToast('이어가고 싶은 사건을 입력해 주세요.'); $('input').focus(); return; }
     // 사건번호 포함 시 데모 모드로 자동 연결 (미일치 시 안내)
     // 띄어쓰기에 관계없이 사건번호 인식 (예: 2026가단12345 = 2026 가 단 12345)
     const qNoSpace = q.replace(/\s+/g, '');
