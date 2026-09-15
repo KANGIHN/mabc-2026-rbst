@@ -1,0 +1,9 @@
+{
+  "name": "mabc-2026-rbst",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --watch api/generate.js"
+  },
+  "dependencies": {}
+}
