@@ -413,6 +413,7 @@
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 14px 16px;
+    margin-top: 14px;
     margin-bottom: 18px;
     box-shadow: var(--shadow-card);
     display: flex;
@@ -503,12 +504,16 @@
   <!-- 입력 카드 (상위 배치) -->
   <div class="input-card">
     <label class="input-label" for="input">이어가고 싶은 사건을 질문이나 사건번호로 알려주세요</label>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-      <span class="example-pill" style="background:#fff;border:1px solid var(--line);color:var(--ink-soft);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;line-height:1.3;">예시</span>
-      <button class="btn toggle" id="mabc2026-pill-1" type="button">2026가단12345 손해배상 — 합의/서면 방향</button>
-      <button class="btn toggle" id="mabc2026-pill-2" type="button">2026가단67890 임대차 — 원상복구비 반박</button>
-      <button class="btn toggle" id="mabc2026-pill-3" type="button">2026나54321 공사대금 항소 — 우선 확인</button>
-    </div>
+      <span class="example-pill" style="background:#fff;border:1px solid var(--line);color:var(--ink-soft);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;line-height:1.3;display:block;margin-bottom:10px;">예시</span>
+      <div class="btn-group" style="margin-bottom:10px;">
+        <button class="btn toggle" id="mabc2026-pill-1" type="button">2026가단12345 손해배상 — 합의/서면 방향</button>
+      </div>
+      <div class="btn-group" style="margin-bottom:10px;">
+        <button class="btn toggle" id="mabc2026-pill-2" type="button">2026가단67890 임대차 — 원상복구비 반박</button>
+      </div>
+      <div class="btn-group" style="margin-bottom:12px;">
+        <button class="btn toggle" id="mabc2026-pill-3" type="button">2026나54321 공사대금 항소 — 우선 확인</button>
+      </div>
     <div class="input-row">
       <textarea id="input" rows="4" placeholder="이어가고 싶은 사건 + 필요하면 메모·기록 요약도 함께 적어주세요 (예: 합의 의향 메일 있음, 준비서면 초안 작성 중)"></textarea>
     </div>
