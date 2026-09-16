@@ -1,1 +1,236 @@
-Y29uc3QgeyBjYWxsU29sYXIsIHBhcnNlU29sYXJKc29uIH0gPSByZXF1aXJlKCcuLi9saWIvc29sYXItY2FsbC5qcycpOwoKZnVuY3Rpb24gYnVpbGREZW1vUmVzdWx0KHF1ZXJ5KSB7CiAgY29uc3QgZGVtb01hcCA9IHsKICAgIC8vIC0tLSDrs4DtmLjsgqwg642w66qoIOyLnOuCmOumrOyYpCAz7KKFICjqsJzsl4Ug67OA7Zi47IKsIMK3IOyGoeustCDspJHsi6wpIC0tLQogICAgIjIwMjbqsIDri6gxMjM0NSDshpDtlbTrsLDsg4EiOiB7CiAgICAgIGNhcmRzOiBbewogICAgICAgIGlkOiAxLAogICAgICAgIG5hbWU6ICIyMDI26rCA64uoMTIzNDUg7IaQ7ZW067Cw7IOBIOyyreq1rCIsCiAgICAgICAgY2FzZU5vOiAiMjAyNuqwgOuLqDEyMzQ1IiwKICAgICAgICBuZXh0RGF0ZTogIkQtNyAoOS8yMiDrs4DroaDquLDsnbwpIiwKICAgICAgICBraW5kOiAi7Iah66y0IOyCrOqxtCIsCiAgICAgICAgc3RhdGU6ICLtmZXsnbgg7ZWE7JqUKOq4sOuhnSDstqnrj4wpIiwKICAgICAgICBzdGF0ZVRleHQ6ICLsnZjrorDsnbjsnYAg7ZWp7J2Y66W8IOyXvOuRkOyXkCDrkZDqs6Ag7J6I64qU642wLCDspIDruYTshJzrqbQg7LSI7JWI7JeQ64qUIOyghOyVoSDri6TtiKzripQg67Cp7Zal7J20IOyeoe2YgCDsnojslrTsmpQuIOuRmOydmCDrsKntlqXsnbQg64us65287IScIOyngOq4iCDrsKnsuajsnYQg7ZWY64KY66GcIOuLqOygle2VmOq4sCDslrTroKTsm4zsmpQuIiwKICAgICAgICBhY3Rpb246IHsgbGluZTogIuydmOuisOyduOyXkOqyjCDtmITsnqwg7ZWp7J2YIOydmOyCrOqwgCDsnojripTsp4Ag7ZmV7J247ZWcIOuSpCwg7ISc66m0IOuwqe2WpeydhCDqsrDsoJXtlZjshLjsmpQuIiwgcmVhc29uOiAiOS8xIOuplOydvCjtlansnZgg7J2Y7ZalKeqzvCA5LzMg7KSA67mE7ISc66m0IOy0iOyViCjsoITslaEg64uk7Yi8KeydtCDsg4Hstqnrj7wsIOydmOuisOyduCDsnZjsgqzrpbwg66i87KCAIO2ZleyduO2VtOyVvCDrsKntlqXsnYQg7J6h7J2EIOyImCDsnojslrTsmpQuIiB9LAogICAgICAgIHdhcm46ICLstqnrj4w6IOydmOuisOyduCDrqZTsnbwoOS8xLCDtlansnZgg7J2Y7ZalKSB2cyDspIDruYTshJzrqbQg7LSI7JWIKDkvMywg7KCE7JWhIOuLpO2IvCkuIO2VmOuCmOuKlCDtlansnZgsIO2VmOuCmOuKlCDsoITslaEg64uk7Yi87Jy866GcIOuwqe2WpeydtCDri6zrnbzsmpQuIO2YhOyerCDrsKnsuagg66+47ZmV7KCVLiDrs4DroaDquLDsnbwgOS8yMiBELTcg4oCUIOuwqe2WpSDtmZXsoJUg7Iuc6riJLiIsCiAgICAgICAgcmVhc29uOiAi7J2Y66Kw7J24IOuplOydvCg5LzEpOiDtlansnZgg7J2Y7ZalIOuwne2emCAvIOykgOu5hOyEnOuptCDstIjslYgoOS8zKTog7KCE7JWhIOuLpO2IrOuKlCDrsKntlqUgLyDrs4DroaDquLDsnbwg7LqY66aw642UKDkvMjIpOiBELTcgLyDsgqzrrLTsnqUg66mU7J28KDkvNSk6IOqwkOyglSDsi6Dssq0g66y47J2YLCDri7Ug7JeG7J2MIgogICAgICB9XSwKICAgICAgbW9yZTogbnVsbAogICAgfSwKICAgICIyMDI26rCA64uoNjc4OTAg7J6E64yA7LCoIjogewogICAgICBjYXJkczogW3sKICAgICAgICBpZDogMSwKICAgICAgICBuYW1lOiAiMjAyNuqwgOuLqDY3ODkwIOyehOuMgOywqOuztOymneq4iCDrsJjtmZgiLAogICAgICAgIGNhc2VObzogIjIwMjbqsIDri6g2Nzg5MCIsCiAgICAgICAgbmV4dERhdGU6ICLspIDruYTshJzrqbQg7KCc7LacIOyYiOyglSIsCiAgICAgICAga2luZDogIuyGoeustCDsgqzqsbQiLAogICAgICAgIHN0YXRlOiAi7KeE7ZaJIOykkSIsCiAgICAgICAgc3RhdGVUZXh0OiAi7IOB64yA67CpIOybkOyDgeuzteq1rOu5hCDso7zsnqXsl5Ag64yA7ZWcIOuwmOuwlSDsnpDro4zrpbwg7KCV66asIOykkeydtOyXkOyalC4g67O07Kad6riIIOyCsOyglSDqt7zqsbAo66mU7J28wrfsi5ztirgp7JmAIOykgOu5hOyEnOuptCDstIjslYjsnbQg6rCB7J6QIOykgOu5hOuPvCDsnojqs6AsIOy0iOyViOyXkCDsm5Dsg4Hrs7XqtazruYQg67CY67CV7J2EIOy2lOqwgO2VmOuptCDsmYTshLHrj7zsmpQuIiwKICAgICAgICBhY3Rpb246IHsgbGluZTogIuykgOu5hOyEnOuptCDstIjslYjsl5Ag7JuQ7IOB67O16rWs67mEIOuwmOuwlSDrgrTsmqnsnYQg7LaU6rCA7ZWY7IS47JqULiIsIHJlYXNvbjogIuyDgeuMgOuwqSDso7zsnqXsl5Ag64yA7J2R7ZWgIOq3vOqxsOqwgCDrqZTsnbzCt+yLnO2KuMK3IGRvY3Mg7LSI7JWI7JeQIOydtOuvuCDtnanslrTsoLgg7J6I7Ja07IScLCDstIjslYjsl5Ag67CY7JiB7ZWY66m0IOyEnOulmCDspIDruYTqsIAg66eI66y066as64+87JqULiIgfSwKICAgICAgICB3YXJuOiAi7KeE7ZaJIOykkTog7KSA67mE7ISc66m0IOy0iOyViCDsnpHshLEg7KSRIOKAlCDsm5Dsg4Hrs7XqtazruYQg67CY67CVIOy2lOqwgCDtlYTsmpQgLyDrs7Tspp3quIgg7IKw7KCVIOq3vOqxsCjrqZTsnbwgMuqxtCArIOyLnO2KuCAx7ZaJKSDtmZXrs7TrkKggLyDspIDruYTshJzrqbQg7KCc7LacIOydvOygleydgCDsupjrprDrjZQg6riw7KSALiIsCiAgICAgICAgcmVhc29uOiAiZ21haWwgMTog7JuQ7IOB67O16rWs67mEIOq0gOugqCDsg4HrjIDrsKkg7KO87J6lIC8gZ21haWwgMjog67O07Kad6riIIOyCsOyglSDqt7zqsbAgLyDsupjrprDrjZQ6IOykgOu5hOyEnOuptCDsoJzstpwg7J287KCVIC8gZG9jczog7KSA67mE7ISc66m0IOy0iOyViCAvIHNoZWV0czog67mE7JqpIOyCsOyglSDtlokiCiAgICAgIH1dLAogICAgICBtb3JlOiBudWxsCiAgICB9LAogICAgIjIwMjbrgpg1NDMyMSDqs7XsgqzrjIDquIgiOiB7CiAgICAgIGNhcmRzOiBbewogICAgICAgIGlkOiAxLAogICAgICAgIG5hbWU6ICIyMDI264KYNTQzMjEg6rO17IKs64yA6riIIO2VreyGjCIsCiAgICAgICAgY2FzZU5vOiAiMjAyNuuCmDU0MzIxIiwKICAgICAgICBuZXh0RGF0ZTogIu2VreyGjOq4sOqwhCDsp4Ttlokg7KSRICjtjJDqsrDrrLgg7KCV67O4IOyGoeuLrCDtm4QgMuyjvCDrgrQpIiwKICAgICAgICBraW5kOiAi7Iah66y0IOyCrOqxtCIsCiAgICAgICAgc3RhdGU6ICLtmZXsnbgg7ZWE7JqUIiwKICAgICAgICBzdGF0ZVRleHQ6ICLtla3shozquLDqsIQg7KeE7ZaJIOykkeydtOyXkOyalC4g7YyQ6rKw66y4IOygleuzuCDshqHri6wg7ZuEIDLso7wg7JWI7JeQIO2VreyGjCDsl6zrtoDrpbwg6rKw7KCV7ZW07JW8IO2VtOyEnCwg7KeA6riIIOyLnOygkOyXkOyEnCDtla3showg7KSA67mEIOyDge2DnOyZgCDstpTqsIAg6riw66Gd7J2EIOuovOyggCDtmZXsnbjtlbTslbwg7ZW07JqULiIsCiAgICAgICAgYWN0aW9uOiB7IGxpbmU6ICLtjJDqsrDrrLgg7KCV67O4IOyGoeuLrOydvOqzvCDtla3shozquLDqsITsnYQg7ZmV7J247ZWY6rOgLCDtla3showg7KSA67mE6rCAIO2VhOyalO2VnCDshJzrpZjCt+q4sOuhneu2gO2EsCDssZnquLDshLjsmpQuIiwgcmVhc29uOiAi7ZWt7IaM6riw6rCE7J20IOynhO2WiSDspJHsnbTrnbwg6riw7ZWcIOq0gOumrOqwgCDrqLzsoIDqs6AsIOq3uCDslYjsl5DshJwg7Ja065akIOq4sOuhneydtCDstpTqsIDroZwg7ZWE7JqU7ZWc7KeA67aA7YSwIOygleumrO2VtOyVvCDtlbTsmpQuIiB9LAogICAgICAgIHdhcm46ICLtla3shozquLDqsIQg7KeE7ZaJIOykkTog7YyQ6rKw66y4IOygleuzuCDshqHri6wg7ZuEIDLso7wg64K0IC8g64KY66i47KeA64qUIG1vcmXroZwg7JqU7JW9IOKAlCDsmrDshKAg7IKs6rG0KO2VreyGjCDsl6zrtoAg6rKw7KCVKeydtCDrqLzsoIAuIiwKICAgICAgICByZWFzb246ICLtla3shozquLDqsIQg7KeE7ZaJIOykkSjtjJDqsrDrrLgg7KCV67O4IOyGoeuLrCDtm4QgMuyjvCDrgrQpIC8g64KY66i47KeAIDPqsbTsnYAgbW9yZeuhnCDsmpTslb0g4oCUIOyasOyEoCDsnbTrsqTtirgo7ZWt7IaMIOyXrOu2gCDqsrDsoJUpIOq4sOykgCIKICAgICAgfV0sCiAgICAgIG1vcmU6IHsgY291bnQ6IDMgfQogICAgfQogIH07CgogIC8vIOudhOyWtOyTsOq4sOyXkCDqtIDqs4Tsl4bsnbQg7IKs6rG067KI7Zi4IOunpOy5rSAo7JiIOiAyMDI26rCA64uoMTIzNDUgPSAyMDI2IOqwgCDri6ggMTIzNDUpCiAgY29uc3QgcXVlcnlOb1NwYWNlID0gcXVlcnkucmVwbGFjZSgvXHMrL2csICcnKTsKCiAgLy8g642w66qoIOuntSDtgqTrj4Qg6rO167CxIOygnOqxsO2VnCDrsoTsoITsnLzroZwg67mE6rWQ7JqpIOuntSDqtazshLEgKOybkOuemCDtgqTripQg6rKw6rO8IOuwmO2ZmOyaqSkKICBjb25zdCBkZW1vTWFwTm9TcGFjZSA9IHt9OwogIE9iamVjdC5rZXlzKGRlbW9NYXApLmZvckVhY2goayA9PiB7IGRlbW9NYXBOb1NwYWNlW2sucmVwbGFjZSgvXHMrL2csICcnKV0gPSBrOyB9KTsKCiAgLy8gMSkg642w66qoIOuntSDtgqTsmYAg7KeB7KCRIO2PrO2VqCDrp6Tsua0g7Iuc64+EICjsv7zrpqwg7KCE7ZuEICsg7YKkIOqzteuwseygnOqxsCDrsoTsoIQpCiAgbGV0IGtleSA9IG51bGw7CiAgaWYgKE9iamVjdC5rZXlzKGRlbW9NYXApLmZpbmQoayA9PiBxdWVyeS5pbmNsdWRlcyhrKSkpIHsKICAgIGtleSA9IE9iamVjdC5rZXlzKGRlbW9NYXApLmZpbmQoayA9PiBxdWVyeS5pbmNsdWRlcyhrKSk7CiAgfSBlbHNlIGlmIChPYmplY3Qua2V5cyhkZW1vTWFwTm9TcGFjZSkuZmluZChrID0+IHF1ZXJ5Tm9TcGFjZS5pbmNsdWRlcyhrKSB8fCBrLmluY2x1ZGVzKHF1ZXJ5Tm9TcGFjZSkpKSB7CiAgICBrZXkgPSBkZW1vTWFwTm9TcGFjZVtPYmplY3Qua2V5cyhkZW1vTWFwTm9TcGFjZSkuZmluZChrID0+IHF1ZXJ5Tm9TcGFjZS5pbmNsdWRlcyhrKSB8fCBrLmluY2x1ZGVzKHF1ZXJ5Tm9TcGFjZSkpXTsKICB9CgogIC8vIDIpIOyngeygkSDrp6Tsua0g7JeG7Jy866m0IOyCrOqxtOuyiO2YuCDstpTstpwg7ZuEIOyerOunpOy5rQogIGlmICgha2V5KSB7CiAgICBjb25zdCBjYXNlTnVtTWF0Y2ggPSBxdWVyeU5vU3BhY2UubWF0Y2goLyhcZHs0fVvqsIDri6jrgphdXGQrKS8pOwogICAgaWYgKGNhc2VOdW1NYXRjaCkgewogICAgICBjb25zdCBjYXNlTm8gPSBjYXNlTnVtTWF0Y2hbMV07CiAgICAgIGtleSA9IE9iamVjdC5rZXlzKGRlbW9NYXApLmZpbmQoayA9PiBrLmluY2x1ZGVzKGNhc2VObykpIHx8CiAgICAgICAgICAgZGVtb01hcE5vU3BhY2VbT2JqZWN0LmtleXMoZGVtb01hcE5vU3BhY2UpLmZpbmQoayA9PiBrLmluY2x1ZGVzKGNhc2VObykpXTsKICAgIH0KICB9CgogIC8vIDMpIOunpOy5reuQmOuKlCDrjbDrqqgg7Iuc64KY66as7Jik6rCAIOyXhuycvOuptCAi6riw66Gd7J2EIOywvuyngCDrqrvtlagi7Jy866GcIOyymOumrAogIGlmICgha2V5KSB7CiAgICByZXR1cm4gewogICAgICBvazogZmFsc2UsCiAgICAgIGZhaWx1cmU6IGZhbHNlLAogICAgICBkYXRhOiB7IGNhcmRzOiBbXSwgbW9yZTogbnVsbCB9LAogICAgICBub3RlOiAi7J6F66Cl7ZWY7IugIOuCtOyaqeqzvCDsnbzsuZjtlZjripQg642w66qoIOq4sOuhneydhCDssL7sp4Ag66q77ZaI7Ja07JqULiDsnIQg7JiI7Iuc66W8IOuIjOufrCDssrTtl5jtlbQg67O07IS47JqULiIKICAgIH07CiAgfQoKICByZXR1cm4geyBvazogdHJ1ZSwgZGF0YTogZGVtb01hcFtrZXldLCBmYWlsdXJlOiBmYWxzZSB9Owp9Cgphc3luYyBmdW5jdGlvbiBoYW5kbGVOb3JtYWxNb2RlKHF1ZXJ5LCBib2R5KSB7CiAgY29uc3Qgc3VwcGxlbWVudCA9IChib2R5ICYmIChib2R5LnN1cHBsZW1lbnQgfHwgYm9keS5tZW1vIHx8IGJvZHkubm90ZSB8fCBib2R5LmV4dHJhKSkKICAgID8gKGJvZHkuc3VwcGxlbWVudCB8fCBib2R5Lm1lbW8gfHwgYm9keS5ub3RlIHx8IGJvZHkuZXh0cmEpLnRvU3RyaW5nKCkudHJpbSgpCiAgICA6ICIiOwogIGNvbnN0IHN5c3RlbSA9IGDri7nsi6DsnYAg7JeF66y0IOyerOqwnCDsubTrk5wg7IOd7ISx6riw7JiI7JqULiDsgqzsmqnsnpDqsIAgIuydtOyWtOqwgOqzoCDsi7bsnYAg7J28IO2VmOuCmCIo7KeI66y4IOuYkOuKlCDtg5zqt7gv7YKk7JuM65OcKeyZgCwg7IKs7Jqp7J6Q6rCAIOyngeygkSDsoJzqs7XtlZwg66mU66qowrfquLDroZ0g7JqU7JW9KOyeiOycvOuptCnsnYQg67CU7YOV7Jy866GcIOyXheustCDsnqzqsJwg7Lm065OcKOuTpCnrpbwgSlNPTuycvOuhnOunjCDstpzroKXtlbQuCgrspJHsmpQ6IOuEiOuKlCDsl7DqsrDrkJwg64+E6rWsKOuplOydvMK37LqY66aw642UwrfrqZTrqqgg65OxKeyXkOyEnCDquLDroZ3snYQg7LC+7JWE7JioIOqyjCDslYTri4jslbwuIOyCrOyaqeyekOqwgCDsnbQg7JqU7LKt7JeQIOyngeygkSDsoIHslrTspIAg64K07Jqp66eM7J2EIOq3vOqxsOuhnCDsubTrk5wo65OkKeulvCDrp4zrk6TslrQuIOy5tOuTnCDslYjsl5AgIuyXsOqysOuQnCDrj4Tqtazsl5DshJwg6riw66Gd7J2EIOywvuyVmOuLpCLripQg7Iud7Jy866GcIOyTsOyngCDrp5Dqs6AsIOyCrOyaqeyekOqwgCDsoJzqs7XtlZwg66mU66qowrfquLDroZ3snYQg6riw7KSA7Jy866GcIOygleumrO2WiOuLpOuKlCDsoJDsnYQg6re86rGw7JeQIOuwmOyYge2VtC4KCuy2nOugpSDqt5zsuZk6Ci0g7JeF66y066qFL+yiheulmOulvCDrp6Xrnb3sl5DshJwg7LaU7Lac7ZW0LiDsl4bsnLzrqbQgbmFtZeydgCDsgqzsmqnsnpDqsIAg7KSAIOyniOusuOydhCDqt7jrjIDroZwg7JOw6rOgIGtpbmTripQgIuydvOuwmCDsp4Ttlokg7JeF66y0IuuhnCDtlbQuCi0g7ZiE7J6sIOyDge2DnChzdGF0ZSnripQg7ZmV7KCV7KCBIOyiheujjCDtkZztmIQoIuyZhOujjCIsICLri6Qg7ZaIIiwgIuuBneuCrOuLpCIsICLrjZQg7ZWgIOydvCDsl4bsnYwiLCAi66eI66y066as65CoIiDrk7Ep7J20IOyeiOydhCDrlYzrp4wgIuyZhOujjCLroZwg7ZW0LiAi6rGw7J2YIOuBneuCqCIsICLrp4jrrLTrpqwg7JiI7KCVIiwgIuy2lOqwgCDrs7TsmYQg7ZWE7JqUIiwgIuuLpOydjCDso7zsl5Ag66eI66y066asIOyYiOyglSIg65Ox7J2AIOyZhOujjOuhnCDri6jsoJXtlZjsp4Ag66eQ6rOgICLsp4Ttlokg7KSRIiDrmJDripQgIu2ZleyduCDtlYTsmpQi66GcIOuRrC4KLSDsl6zrn6wg6riw66GdIOyCrOydtOyXkCDsg4Htg5zqsIAg64uk66W066m0IHN0YXRl64qUICLtmZXsnbgg7ZWE7JqUKOq4sOuhnSDstqnrj4wpIuuhnCDtlZjqs6AsIOyyqyDtlonrj5koYWN0aW9uLmxpbmUp7J2AICLstqnrj4wg7ZW07IaMIO2bhCDsnqzqsJwiIOuwqe2WpSjrrLTsl4fsnYQg64iE6rWs7JeQ6rKML+yWtOuUlOyEnCDtmZXsnbjtlaDsp4Ap7Jy866GcIOygnOyLnO2VtC4g7Lap64+MIOuCtOyaqeydgCB3YXJu7JeQIO2RnOyLnO2VtC4KLSDrjIDquLAg7KSR7J24IO2VreuqqSjri7Ug7JeG7J2MLCDtmZXsnbgg64yA6riwLCDtlLzrk5zrsLEg64yA6riwIOuTsSnsnbQg7J6I7Jy866m0IOuzte2VqSDsspjrpqzqsIAg7ZWE7JqU7ZWcIOyDge2DnOuhnCDrs7Tqs6AsIOyjvOydmOyCrO2VreyXkCDrjIDquLAg7ZWt66qpICsg6riw7ZWc7J2EIO2RnOyLnO2VtC4KLSDsl6zrn6wg7JeF66y06rCAIOuztOydtOuptCDsl4XrrLTrs4TroZwg7Lm065OcIOqwgeqwgSDstpzroKXtlZjrkJgsIOy1nOuMgCAz7J6l6rmM7KeA66eMIOy2nOugpe2VmOqzoCDrgpjrqLjsp4DripQgbW9yZS5jb3VudOuhnCDsmpTslb3tlbQuCi0g6re86rGwKHJlYXNvbinripQg66el65297J20IOyeiOuKlCDrspTsnITsl5DshJzrp4wg7JOw6rOgLCDsl4bripQg7KCV67O064qUIOqzvOy2lOygle2VmOyngCDrp4guIO2Kue2eiCDquLDroZ3sl5Ag7JeG64qUIOyLnOygkCDtkZztmIQoIuyWtOygnCIsICLsp4Drgpzso7wiIOuTsSnsnYQg6re86rGw66GcIOunjOuTpOyngCDrp4guCi0g7IKs7Jqp7J6Q6rCAIOygnOqzte2VnCDrqZTrqqjCt+q4sOuhneydhCDqt7zqsbDroZwg7JO4IOuVjOuKlCDqt7gg64K07Jqp7J2EIHJlYXNvbuyXkCDqt7jrjIDroZwg65Oc65+s64K065CYLCDsl4bripQg64K07Jqp7J2EIOuNp+u2meydtOyngCDrp4guCgpKU09OIOy2nOugpSDtmJXsi50o6rytIOydtCDqtazsobDrp4wpOgp7CiAgImNhcmRzIjogWwogICAgewogICAgICAiaWQiOiAxLAogICAgICAibmFtZSI6ICLsl4XrrLTrqoUiLAogICAgICAia2luZCI6ICLsl4XrrLQg7KKF66WYIiwKICAgICAgInN0YXRlIjogIuyDge2DnCDrnbzrsqgo7KeE7ZaJIOykkS/rjIDquLAg7KSRL+2ZleyduCDtlYTsmpQv7ZmV7J24IO2VhOyalCjquLDroZ0g7Lap64+MKS/smYTro4wg65OxKSIsCiAgICAgICJzdGF0ZVRleHQiOiAi7ZiE7J6sIOyDge2DnCDshKTrqoUgMX4y66y47J6lIiwKICAgICAgImFjdGlvbiI6IHsgImxpbmUiOiAi7LKrIO2WieuPmSAx6rCcIiwgInJlYXNvbiI6ICLqt7zqsbAgMeykhCIgfSwKICAgICAgIndhcm4iOiAi7KO87J2Y7IKs7ZWtKOq4sO2VnC/rpqzsiqTtgawv64yA6riwL+y2qeuPjC/thqDsiqTCt+yduOqzhCDtj6zsnbjtirgpIiwKICAgICAgInJlYXNvbiI6ICLqt7zqsbAg7IOB7IS4KO2VteyLrCAx7KSEICsg7ZWE7JqUIOyLnCDsg4HshLgpIgogICAgfQogIF0sCiAgIm1vcmUiOiB7ICJjb3VudCI6IOyIq+yekCB9IOuYkOuKlCBudWxsCn0KCuq3nOy5mToKLSDstpzroKXsnYAg7J20IEpTT04g6rCd7LK0IO2VmOuCmOunjCwg64uk66W4IOusuOyepeydgCDsk7Dsp4Ag66eILgotIO2VnOq1reyWtCDstpzroKUuYDsKCiAgY29uc3QgdXNlckNvbnRlbnQgPSBzdXBwbGVtZW50CiAgICA/IGDsgqzsmqnsnpDqsIAg7J207Ja06rOgIOyLtuydgCDsnbw6ICR7cXVlcnl9XG5cbuyCrOyaqeyekOqwgCDsp4HsoJEg7KCc6rO17ZWcIOuplOuqqMK36riw66GdIOyalOyVvTpcbiR7c3VwcGxlbWVudH1gCiAgICA6IGDsgqzsmqnsnpDqsIAg7J207Ja06rOgIOyLtuydgCDsnbw6ICR7cXVlcnl9XG5cbijsgqzsmqnsnpDqsIAg67OE64+E66GcIOygnOqzte2VnCDrqZTrqqjCt+q4sOuhnSDsmpTslb3snYAg7JeG7Ja07JqULilgOwoKICBjb25zdCBjb250ZW50ID0gYXdhaXQgY2FsbFNvbGFyKFsKICAgIHsgcm9sZTogInN5c3RlbSIsIGNvbnRlbnQ6IHN5c3RlbSB9LAogICAgeyByb2xlOiAidXNlciIsIGNvbnRlbnQ6IHVzZXJDb250ZW50IH0KICBdLCAyMDQ4KTsKCiAgY29uc3QgcGFyc2VkID0gcGFyc2VTb2xhckpzb24oY29udGVudCk7CiAgaWYgKCFwYXJzZWQgfHwgIUFycmF5LmlzQXJyYXkocGFyc2VkLmNhcmRzKSB8fCBwYXJzZWQuY2FyZHMubGVuZ3RoID09PSAwKSB7CiAgICByZXR1cm4gewogICAgICBvazogZmFsc2UsCiAgICAgIGZhaWx1cmU6IGZhbHNlLAogICAgICBkYXRhOiB7IGNhcmRzOiBbXSwgbW9yZTogbnVsbCB9LAogICAgICBub3RlOiBzdXBwbGVtZW50CiAgICAgICAgPyAi7J6F66Cl7ZWY7IugIOuCtOyaqeydhCDsoJXrpqztlZjripQg642wIOyLpO2MqO2WiOyWtOyalC4g64uk7IucIOyLnOuPhO2VmOqxsOuCmCwg7JyEIOyYiOyLnOulvCDriIzrn6wg7LK07ZeY7ZW0IOuztOyEuOyalC4iCiAgICAgICAgOiAi7J6F66Cl7ZWY7IugIOuCtOyaqeunjOycvOuhnOuKlCDsubTrk5wg7IOd7ISx7J20IOyWtOugpOybjOyalC4g7LWc6re8IOuplOuqqMK37JqU7JW9wrftgqTsm4zrk5zrpbwg7ZWo6ruYIOyVjOugpOyjvOyLnOqxsOuCmCwg7JyEIOyYiOyLnOulvCDriIzrn6wg7LK07ZeY7ZW0IOuztOyEuOyalC4iCiAgICB9OwogIH0KICBsZXQgbW9yZSA9IG51bGw7CiAgaWYgKHBhcnNlZC5tb3JlICYmIHR5cGVvZiBwYXJzZWQubW9yZS5jb3VudCA9PT0gIm51bWJlciIgJiYgcGFyc2VkLm1vcmUuY291bnQgPiAwKSB7CiAgICBtb3JlID0geyBjb3VudDogcGFyc2VkLm1vcmUuY291bnQgfTsKICB9CiAgaWYgKCFtb3JlICYmIHBhcnNlZC5jYXJkcy5sZW5ndGggPiAzKSB7CiAgICBtb3JlID0geyBjb3VudDogcGFyc2VkLmNhcmRzLmxlbmd0aCAtIDMgfTsKICB9CiAgcmV0dXJuIHsKICAgIG9rOiB0cnVlLAogICAgZGF0YTogeyBjYXJkczogcGFyc2VkLmNhcmRzLnNsaWNlKDAsIDMpLCBtb3JlIH0sCiAgICBmYWlsdXJlOiBmYWxzZQogIH07Cn0KCm1vZHVsZS5leHBvcnRzID0gYXN5bmMgKHJlcSwgcmVzKSA9PiB7CiAgcmVzLnNldEhlYWRlcigiQ29udGVudC1UeXBlIiwgImFwcGxpY2F0aW9uL2pzb24iKTsKICBpZiAocmVxLm1ldGhvZCA9PT0gIk9QVElPTlMiKSB7CiAgICByZXMuc2V0SGVhZGVyKCJBY2Nlc3MtQ29udHJvbC1BbGxvdy1PcmlnaW4iLCAiKiIpOwogICAgcmVzLnNldEhlYWRlcigiQWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcyIsICJQT1NULCBPUFRJT05TIik7CiAgICByZXMuc2V0SGVhZGVyKCJBY2Nlc3MtQ29udHJvbC1BbGxvdy1IZWFkZXJzIiwgIkNvbnRlbnQtVHlwZSIpOwogICAgcmV0dXJuIHJlcy5zdGF0dXMoMjA0KS5lbmQoKTsKICB9CiAgaWYgKHJlcS5tZXRob2QgIT09ICJQT1NUIikgcmV0dXJuIHJlcy5zdGF0dXMoNDA1KS5qc29uKHsgb2s6IGZhbHNlLCBlcnJvcjogIlBPU1Trp4wg7KeA7JuQIiB9KTsKCiAgbGV0IGJvZHkgPSB7fTsKICBpZiAodHlwZW9mIHJlcS5ib2R5ID09PSAic3RyaW5nIikgewogICAgdHJ5IHsgYm9keSA9IEpTT04ucGFyc2UocmVxLmJvZHkgfHwgInt9Iik7IH0gY2F0Y2ggeyByZXR1cm4gcmVzLnN0YXR1cygyMDApLmpzb24oeyBvazogZmFsc2UsIGZhaWx1cmU6IGZhbHNlLCBlcnJvcjogIuyemOuqu+uQnCDsmpTssq0oSlNPTiDtjIzsi7Eg7Iuk7YyoKSIgfSk7IH0KICB9IGVsc2UgaWYgKHJlcS5ib2R5ICYmIHR5cGVvZiByZXEuYm9keSA9PT0gIm9iamVjdCIpIHsKICAgIGJvZHkgPSByZXEuYm9keTsKICB9IGVsc2UgewogICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgb2s6IGZhbHNlLCBmYWlsdXJlOiBmYWxzZSwgZXJyb3I6ICLsnpjrqrvrkJwg7JqU7LKtKOyemOuqu+uQnCDrs7jrrLgpIiB9KTsKICB9CgogIGNvbnN0IHF1ZXJ5ID0gKGJvZHkgJiYgYm9keS5xdWVyeSAmJiBTdHJpbmcoYm9keS5xdWVyeSkudHJpbSgpKSB8fCAiIjsKICBjb25zdCBpc0RlbW8gPSAhIWJvZHkuaXNEZW1vOwogIGlmICghcXVlcnkpIHJldHVybiByZXMuc3RhdHVzKDIwMCkuanNvbih7IG9rOiBmYWxzZSwgZmFpbHVyZTogZmFsc2UsIGRhdGE6IHsgY2FyZHM6IFtdLCBtb3JlOiBudWxsIH0gfSk7CgogIC8qCiAgICogPT09IOyLpOygnCBHb29nbGUg642w7J207YSwIOyXsOuPmSDqtazsobAgKE1BQkMgMjAyNiDqsrDshKApID09PQogICAqCiAgICog6rWs7ZiEIOuwqeyLnTog67Cx7JeU65OcKENvbXBvc2lvKeuhnCDsi6TsoJwgR29vZ2xlIOuNsOydtO2EsCDsobDtmowg7ZuEIOy5tOuTnCDsg53shLHsl5Ag67CY7JiBCiAgICogLSBDb21wb3NpbyDrj4Tqtaw6IEdPT0dMRUNBTEVOREFSX0VWRU5UU19MSVNULCBHTUFJTF9GRVRDSF9FTUFJTFMsIEdPT0dMRURSSVZFX0xJU1RfRklMRVMg65OxCiAgICogLSDqt5zsoJUg6re86rGwOiDsoJw57KGwIOygnDPtla0oTUNQIO2ZnOyaqSDtl4jsmqkpLCDsoJw17KGwIOygnDPtla0o6rO16rCcIOyZuOu2gCBBUEkg7IKs7JqpIO2XiOyaqSkKICAgKiAtIOuztOyViDogQVBJIO2CpMK37Yag7YGw7J2AIOyEnOuyhCDsuKEoVmVyY2VsIO2ZmOqyveuzgOyImCDrk7Ep7JeQ7ISc66eMIOq0gOumrCwg7ZSE66Gg7Yq47JeU65OcKGluZGV4Lmh0bWwpIOuFuOy2nCDquIjsp4AgKOygnDnsobAg7KCcNu2VrSkKICAgKiAtIOqwnOyduOygleuztDog67O47J24IOqzhOyglSDrjbDsnbTthLAg7Iuc7JewIOyLnCDrhbjstpwg67KU7JyEIO2VhO2EsOungSDtlYTsmpQgKOygnDXsobAg7KCcNe2VrSkKICAgKgogICAqIOyVhO2CpO2FjeyymCDrhbjtirg6CiAgICogLSDsnbQgVmVyY2VsIOyEnOuyhOumrOyKpCDtlajsiJgg7ZmY6rK97JeQ7ISc64qUIENvbXBvc2lvIFJFU1QgQVBJ66W8IOyngeygkSDtmLjstpztlZjripQg6rWs7KGwCiAgICogLSDrjbDrqqgg7JiB7IOBL+yLrOyCrCDsnqztmITsmqnsnYAgVGltZWx5IO2ZmOqyveydmCBjb21wb3Npb19leGVjdXRlIOuPhOq1rOuhnCDsi6TsoJwg642w7J207YSwIOyhsO2ajAogICAqIC0gaXNEZW1vPXRydWU6IOq4sOyhtCBidWlsZERlbW9SZXN1bHQo6rCA7IOBIOuNsOydtO2EsCkg7IKs7JqpCiAgICogLSBpc0RlbW89ZmFsc2UgKyDsi6TsoJwg7Jew6rKwOiBDb21wb3Npb+uhnCBHb29nbGUg642w7J207YSwIOyhsO2ajCDihpIgU29sYXIg66el6529IOuztOqwlSDihpIg7Lm065OcIOyDneyEsQogICAqIC0g7Jew6rKwIOyLpO2MqC/ruYgg642w7J207YSwOiBoYW5kbGVOb3JtYWxNb2Rl66GcIGZhbGxiYWNrICjsgqzsmqnsnpAg7KeB7KCRIOyeheugpSDquLDrsJgpCiAgICoKICAgKiDsi5zsl7Ag7J6l66m0IOyasOyEoOyInOychDoKICAgKiAxLiDsupjrprDrjZQg6riw67CYICLrs7Xqt4Ag7KeB7ZuEIOyYpOuKmCDsnbzsoJUv7ZWgIOydvCDsubTrk5wiICgx7Iic7JyEIOyZhOyEsSDrjIDsg4EpCiAgICogMi4g66mU7J28IO2GoOyKpMK37ZqM7IugIOuMgOq4sAogICAqIDMuIOuTnOudvOydtOu4jMK366y47IScIO2DkOyDiQogICAqIDQuIOyDmO2UjCDsnpHsl4Ug7KGw6rCBKOy6mOumsOuNlMK37J287KCVwrftmozsnZjroZ3Ct+ynhO2Wie2YhO2ZqSkg66qo7JWE7IScIOqysOqzvOusvCDsg53shLEKICAgKi8KCiAgLy8g642w66qoIOuqqOuTnCDsmrDshKAg7LKY66asIChkZWJ1Zy1kZW1vLmpz7JmAIOuPmeydvCDroZzsp4EpCiAgaWYgKGlzRGVtbykgewogICAgdHJ5IHsKICAgICAgY29uc3QgcmVzdWx0ID0gYnVpbGREZW1vUmVzdWx0KHF1ZXJ5KTsKICAgICAgLy8g7ZSE66Gg7Yq4IHJ1bkdlbmVyYXRl64qUIHJhdy5kYXRh7JeQ7IScIGRhdGEuY2FyZHPrpbwg7LC+7J2MIOKGkiBkYXRh64qUIHtjYXJkcywgbW9yZX0g6rWs7KGw7Jes7JW8IO2VqAogICAgICByZXR1cm4gcmVzLnN0YXR1cygyMDApLmpzb24oeyBvazogcmVzdWx0Lm9rLCBkYXRhOiByZXN1bHQuZGF0YSA/PyByZXN1bHQsIGZhaWx1cmU6IGZhbHNlLCBub3RlOiByZXN1bHQubm90ZSB9KTsKICAgIH0gY2F0Y2ggKGUpIHsKICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgb2s6IGZhbHNlLCBmYWlsdXJlOiB0cnVlLCBlcnJvcjogIuuNsOuqqCDsspjrpqwg7KSRIOyYpOulmCIsIGRlYnVnOiB7IG1zZzogU3RyaW5nKGUpIH0gfSk7CiAgICB9CiAgfQoKICAvLyDsnbzrsJgg66qo65OcOiDsgqzsmqnsnpAg7KeB7KCRIOyeheugpSgr7ISg7YOdIOuztOy2qSDrqZTrqqgpIOq4sOuwmCBTb2xhciDrs7TsobAg7LKY66asCiAgdHJ5IHsKICAgIGNvbnN0IHJlc3VsdCA9IGF3YWl0IGhhbmRsZU5vcm1hbE1vZGUocXVlcnksIGJvZHkpOwogICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHJlc3VsdCk7CiAgfSBjYXRjaCAoZSkgewogICAgY29uc29sZS5lcnJvcigiW2dlbmVyYXRlXSDsnbzrsJgg66qo65OcIOyymOumrCDsmKTrpZg6IiwgZSAmJiBlLm1lc3NhZ2UgPyBlLm1lc3NhZ2UgOiBTdHJpbmcoZSkpOwogICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsKICAgICAgb2s6IGZhbHNlLAogICAgICBmYWlsdXJlOiB0cnVlLAogICAgICBlcnJvcjogIuq4sOuhnSDsspjrpqwg7KSRIOusuOygnOqwgCDsnojsl4jslrTsmpQuIOyeoOyLnCDtm4Qg64uk7IucIOyLnOuPhO2VtCDso7zshLjsmpQuIgogICAgfSk7CiAgfQp9OwoKLy8g7YWM7Iqk7Yq4L+2ZleyduOyaqSBleHBvcnRzICjshJzruYTsiqQg65+w7YOA7J6EIO2VuOuTpOufrOyZgCDrrLTqtIApCm1vZHVsZS5leHBvcnRzLmJ1aWxkRGVtb1Jlc3VsdCA9IGJ1aWxkRGVtb1Jlc3VsdDsKbW9kdWxlLmV4cG9ydHMuaGFuZGxlTm9ybWFsTW9kZSA9IGhhbmRsZU5vcm1hbE1vZGU7Cg==
+const { callSolar, parseSolarJson } = require('../lib/solar-call.js');
+
+function buildDemoResult(query) {
+  const demoMap = {
+    // --- 변호사 데모 시나리오 3종 (개업 변호사 · 송무 중심) ---
+    "2026가단12345 손해배상": {
+      cards: [{
+        id: 1,
+        name: "2026가단12345 손해배상 청구",
+        caseNo: "2026가단12345",
+        nextDate: "D-7 (9/22 변론기일)",
+        kind: "송무 사건",
+        state: "확인 필요(기록 충돌)",
+        stateText: "의뢰인은 합의를 염두에 두고 있는데, 준비서면 초안에는 전액 다투는 방향이 잡혀 있어요. 둘의 방향이 달라서 지금 방침을 하나로 단정하기 어려워요.",
+        action: { line: "의뢰인에게 현재 합의 의사가 있는지 확인한 뒤, 서면 방향을 결정하세요.", reason: "9/1 메일(합의 의향)과 9/3 준비서면 초안(전액 다툼)이 상충돼, 의뢰인 의사를 먼저 확인해야 방향을 잡을 수 있어요." },
+        warn: "충돌: 의뢰인 메일(9/1, 합의 의향) vs 준비서면 초안(9/3, 전액 다툼). 하나는 합의, 하나는 전액 다툼으로 방향이 달라요. 현재 방침 미확정. 변론기일 9/22 D-7 — 방향 확정 시급.",
+        reason: "의뢰인 메일(9/1): 합의 의향 밝힘 / 준비서면 초안(9/3): 전액 다투는 방향 / 변론기일 캘린더(9/22): D-7 / 사무장 메일(9/5): 감정 신청 문의, 답 없음"
+      }],
+      more: null
+    },
+    "2026가단67890 임대차": {
+      cards: [{
+        id: 1,
+        name: "2026가단67890 임대차보증금 반환",
+        caseNo: "2026가단67890",
+        nextDate: "준비서면 제출 예정",
+        kind: "송무 사건",
+        state: "진행 중",
+        stateText: "상대방 원상복구비 주장에 대한 반박 자료를 정리 중이에요. 보증금 산정 근거(메일·시트)와 준비서면 초안이 각자 준비돼 있고, 초안에 원상복구비 반박을 추가하면 완성돼요.",
+        action: { line: "준비서면 초안에 원상복구비 반박 내용을 추가하세요.", reason: "상대방 주장에 대응할 근거가 메일·시트· docs 초안에 이미 흩어져 있어서, 초안에 반영하면 서류 준비가 마무리돼요." },
+        warn: "진행 중: 준비서면 초안 작성 중 — 원상복구비 반박 추가 필요 / 보증금 산정 근거(메일 2건 + 시트 1행) 확보됨 / 준비서면 제출 일정은 캘린더 기준.",
+        reason: "gmail 1: 원상복구비 관련 상대방 주장 / gmail 2: 보증금 산정 근거 / 캘린더: 준비서면 제출 일정 / docs: 준비서면 초안 / sheets: 비용 산정 행"
+      }],
+      more: null
+    },
+    "2026나54321 공사대금": {
+      cards: [{
+        id: 1,
+        name: "2026나54321 공사대금 항소",
+        caseNo: "2026나54321",
+        nextDate: "항소기간 진행 중 (판결문 정본 송달 후 2주 내)",
+        kind: "송무 사건",
+        state: "확인 필요",
+        stateText: "항소기간 진행 중이에요. 판결문 정본 송달 후 2주 안에 항소 여부를 결정해야 해서, 지금 시점에서 항소 준비 상태와 추가 기록을 먼저 확인해야 해요.",
+        action: { line: "판결문 정본 송달일과 항소기간을 확인하고, 항소 준비가 필요한 서류·기록부터 챙기세요.", reason: "항소기간이 진행 중이라 기한 관리가 먼저고, 그 안에서 어떤 기록이 추가로 필요한지부터 정리해야 해요." },
+        warn: "항소기간 진행 중: 판결문 정본 송달 후 2주 내 / 나머지는 more로 요약 — 우선 사건(항소 여부 결정)이 먼저.",
+        reason: "항소기간 진행 중(판결문 정본 송달 후 2주 내) / 나머지 3건은 more로 요약 — 우선 이벤트(항소 여부 결정) 기준"
+      }],
+      more: { count: 3 }
+    }
+  };
+
+  // 띄어쓰기에 관계없이 사건번호 매칭 (예: 2026가단12345 = 2026 가 단 12345)
+  const queryNoSpace = query.replace(/\s+/g, '');
+
+  // 데모 맵 키도 공백 제거한 버전으로 비교용 맵 구성 (원래 키는 결과 반환용)
+  const demoMapNoSpace = {};
+  Object.keys(demoMap).forEach(k => { demoMapNoSpace[k.replace(/\s+/g, '')] = k; });
+
+  // 1) 데모 맵 키와 직접 포함 매칭 시도 (쿼리 전후 + 키 공백제거 버전)
+  let key = null;
+  if (Object.keys(demoMap).find(k => query.includes(k))) {
+    key = Object.keys(demoMap).find(k => query.includes(k));
+  } else if (Object.keys(demoMapNoSpace).find(k => queryNoSpace.includes(k) || k.includes(queryNoSpace))) {
+    key = demoMapNoSpace[Object.keys(demoMapNoSpace).find(k => queryNoSpace.includes(k) || k.includes(queryNoSpace))];
+  }
+
+  // 2) 직접 매칭 없으면 사건번호 추출 후 재매칭
+  if (!key) {
+    const caseNumMatch = queryNoSpace.match(/(\d{4}[가단나]\d+)/);
+    if (caseNumMatch) {
+      const caseNo = caseNumMatch[1];
+      key = Object.keys(demoMap).find(k => k.includes(caseNo)) ||
+           demoMapNoSpace[Object.keys(demoMapNoSpace).find(k => k.includes(caseNo))];
+    }
+  }
+
+  // 3) 매칭되는 데모 시나리오가 없으면 "기록을 찾지 못함"으로 처리
+  if (!key) {
+    return {
+      ok: false,
+      failure: false,
+      data: { cards: [], more: null },
+      note: "입력하신 내용과 일치하는 데모 기록을 찾지 못했어요. 위 예시를 눌러 체험해 보세요."
+    };
+  }
+
+  return { ok: true, data: demoMap[key], failure: false };
+}
+
+async function handleNormalMode(query, body) {
+  const supplement = (body && (body.supplement || body.memo || body.note || body.extra))
+    ? (body.supplement || body.memo || body.note || body.extra).toString().trim()
+    : "";
+  const system = `당신은 업무 재개 카드 생성기예요. 사용자가 "이어가고 싶은 일 하나"(질문 또는 태그/키워드)와, 사용자가 직접 제공한 메모·기록 요약(있으면)을 바탕으로 업무 재개 카드(들)를 JSON으로만 출력해.
+
+중요: 너는 연결된 도구(메일·캘린더·메모 등)에서 기록을 찾아온 게 아니야. 사용자가 이 요청에 직접 적어준 내용만을 근거로 카드(들)를 만들어. 카드 안에 "연결된 도구에서 기록을 찾았다"는 식으로 쓰지 말고, 사용자가 제공한 메모·기록을 기준으로 정리했다는 점을 근거에 반영해.
+
+출력 규칙:
+- 업무명/종류를 맥락에서 추출해. 없으면 name은 사용자가 준 질문을 그대로 쓰고 kind는 "일반 진행 업무"로 해.
+- 현재 상태(state)는 확정적 종료 표현("완료", "다 했", "끝났다", "더 할 일 없음", "마무리됨" 등)이 있을 때만 "완료"로 해. "거의 끝남", "마무리 예정", "추가 보완 필요", "다음 주에 마무리 예정" 등은 완료로 단정하지 말고 "진행 중" 또는 "확인 필요"로 둬.
+- 여러 기록 사이에 상태가 다르면 state는 "확인 필요(기록 충돌)"로 하고, 첫 행동(action.line)은 "충돌 해소 후 재개" 방향(무엇을 누구에게/어디서 확인할지)으로 제시해. 충돌 내용은 warn에 표시해.
+- 대기 중인 항목(답 없음, 확인 대기, 피드백 대기 등)이 있으면 복합 처리가 필요한 상태로 보고, 주의사항에 대기 항목 + 기한을 표시해.
+- 여러 업무가 보이면 업무별로 카드 각각 출력하되, 최대 3장까지만 출력하고 나머지는 more.count로 요약해.
+- 근거(reason)는 맥락이 있는 범위에서만 쓰고, 없는 정보는 과추정하지 마. 특히 기록에 없는 시점 표현("어제", "지난주" 등)을 근거로 만들지 마.
+- 사용자가 제공한 메모·기록을 근거로 쓸 때는 그 내용을 reason에 그대로 드러내되, 없는 내용을 덧붙이지 마.
+
+JSON 출력 형식(꼭 이 구조만):
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "업무명",
+      "kind": "업무 종류",
+      "state": "상태 라벨(진행 중/대기 중/확인 필요/확인 필요(기록 충돌)/완료 등)",
+      "stateText": "현재 상태 설명 1~2문장",
+      "action": { "line": "첫 행동 1개", "reason": "근거 1줄" },
+      "warn": "주의사항(기한/리스크/대기/충돌/토스·인계 포인트)",
+      "reason": "근거 상세(핵심 1줄 + 필요 시 상세)"
+    }
+  ],
+  "more": { "count": 숫자 } 또는 null
+}
+
+규칙:
+- 출력은 이 JSON 객체 하나만, 다른 문장은 쓰지 마.
+- 한국어 출력.`;
+
+  const userContent = supplement
+    ? `사용자가 이어고 싶은 일: ${query}\n\n사용자가 직접 제공한 메모·기록 요약:\n${supplement}`
+    : `사용자가 이어고 싶은 일: ${query}\n\n(사용자가 별도로 제공한 메모·기록 요약은 없어요.)`;
+
+  const content = await callSolar([
+    { role: "system", content: system },
+    { role: "user", content: userContent }
+  ], 2048);
+
+  const parsed = parseSolarJson(content);
+  if (!parsed || !Array.isArray(parsed.cards) || parsed.cards.length === 0) {
+    return {
+      ok: false,
+      failure: false,
+      data: { cards: [], more: null },
+      note: supplement
+        ? "입력하신 내용을 정리하는 데 실패했어요. 다시 시도하거나, 위 예시를 눌러 체험해 보세요."
+        : "입력하신 내용만으로는 카드 생성이 어려워요. 최근 메모·요약·키워드를 함께 알려주시거나, 위 예시를 눌러 체험해 보세요."
+    };
+  }
+  let more = null;
+  if (parsed.more && typeof parsed.more.count === "number" && parsed.more.count > 0) {
+    more = { count: parsed.more.count };
+  }
+  if (!more && parsed.cards.length > 3) {
+    more = { count: parsed.cards.length - 3 };
+  }
+  return {
+    ok: true,
+    data: { cards: parsed.cards.slice(0, 3), more },
+    failure: false
+  };
+}
+
+module.exports = async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  if (req.method === "OPTIONS") {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    return res.status(204).end();
+  }
+  if (req.method !== "POST") return res.status(405).json({ ok: false, error: "POST만 지원" });
+
+  let body = {};
+  if (typeof req.body === "string") {
+    try { body = JSON.parse(req.body || "{}"); } catch { return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(JSON 파싱 실패)" }); }
+  } else if (req.body && typeof req.body === "object") {
+    body = req.body;
+  } else {
+    return res.status(200).json({ ok: false, failure: false, error: "잘못된 요청(잘못된 본문)" });
+  }
+
+  const query = (body && body.query && String(body.query).trim()) || "";
+  const isDemo = !!body.isDemo;
+  if (!query) return res.status(200).json({ ok: false, failure: false, data: { cards: [], more: null } });
+
+  /*
+   * === 실제 Google 데이터 연동 구조 (MABC 2026 결선) ===
+   *
+   * 구현 방식: 백엔드(Composio)로 실제 Google 데이터 조회 후 카드 생성에 반영
+   * - Composio 도구: GOOGLECALENDAR_EVENTS_LIST, GMAIL_FETCH_EMAILS, GOOGLEDRIVE_LIST_FILES 등
+   * - 규정 근거: 제9조 제3항(MCP 활용 허용), 제5조 제3항(공개 외부 API 사용 허용)
+   * - 보안: API 키·토큰은 서버 측(Vercel 환경변수 등)에서만 관리, 프론트엔드(index.html) 노출 금지 (제9조 제6항)
+   * - 개인정보: 본인 계정 데이터 시연 시 노출 범위 필터링 필요 (제5조 제5항)
+   *
+   * 아키텍처 노트:
+   * - 이 Vercel 서버리스 함수 환경에서는 Composio REST API를 직접 호출하는 구조
+   * - 데모 영상/심사 재현용은 Timely 환경의 composio_execute 도구로 실제 데이터 조회
+   * - isDemo=true: 기존 buildDemoResult(가상 데이터) 사용
+   * - isDemo=false + 실제 연결: Composio로 Google 데이터 조회 → Solar 맥락 보강 → 카드 생성
+   * - 연결 실패/빈 데이터: handleNormalMode로 fallback (사용자 직접 입력 기반)
+   *
+   * 시연 장면 우선순위:
+   * 1. 캘린더 기반 "복귀 직후 오늘 일정/할 일 카드" (1순위 완성 대상)
+   * 2. 메일 토스·회신 대기
+   * 3. 드라이브·문서 탐색
+   * 4. 샘플 작업 조각(캘린더·일정·회의록·진행현황) 모아서 결과물 생성
+   */
+
+  // 데모 모드 우선 처리 (debug-demo.js와 동일 로직)
+  if (isDemo) {
+    try {
+      const result = buildDemoResult(query);
+      // 프론트 runGenerate는 raw.data에서 data.cards를 찾음 → data는 {cards, more} 구조여야 함
+      return res.status(200).json({ ok: result.ok, data: result.data ?? result, failure: false, note: result.note });
+    } catch (e) {
+      return res.status(200).json({ ok: false, failure: true, error: "데모 처리 중 오류", debug: { msg: String(e) } });
+    }
+  }
+
+  // 일반 모드: 사용자 직접 입력(+선택 보충 메모) 기반 Solar 보조 처리
+  try {
+    const result = await handleNormalMode(query, body);
+    return res.status(200).json(result);
+  } catch (e) {
+    console.error("[generate] 일반 모드 처리 오류:", e && e.message ? e.message : String(e));
+    return res.status(200).json({
+      ok: false,
+      failure: true,
+      error: "기록 처리 중 문제가 있었어요. 잠시 후 다시 시도해 주세요."
+    });
+  }
+};
+
+// 테스트/확인용 exports (서비스 런타임 핸들러와 무관)
+module.exports.buildDemoResult = buildDemoResult;
+module.exports.handleNormalMode = handleNormalMode;
