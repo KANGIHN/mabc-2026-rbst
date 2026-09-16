@@ -505,9 +505,9 @@
     <label class="input-label" for="input">이어가고 싶은 사건을 질문이나 사건번호로 알려주세요</label>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
       <span class="example-pill" style="background:#fff;border:1px solid var(--line);color:var(--ink-soft);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;line-height:1.3;">예시</span>
-      <button class="btn toggle" id="mabc2027-pill-1" type="button">2026가단12345 손해배상 — 합의/서면 방향</button>
-      <button class="btn toggle" id="mabc2027-pill-2" type="button">2026가단67890 임대차 — 원상복구비 반박</button>
-      <button class="btn toggle" id="mabc2027-pill-3" type="button">2026나54321 공사대금 항소 — 우선 확인</button>
+      <button class="btn toggle" id="mabc2026-pill-1" type="button">2026가단12345 손해배상 — 합의/서면 방향</button>
+      <button class="btn toggle" id="mabc2026-pill-2" type="button">2026가단67890 임대차 — 원상복구비 반박</button>
+      <button class="btn toggle" id="mabc2026-pill-3" type="button">2026나54321 공사대금 항소 — 우선 확인</button>
     </div>
     <div class="input-row">
       <textarea id="input" rows="4" placeholder="이어가고 싶은 사건 + 필요하면 메모·기록 요약도 함께 적어주세요 (예: 합의 의향 메일 있음, 준비서면 초안 작성 중)"></textarea>
@@ -572,12 +572,12 @@ function setExamples(){
   });
 }
 
-// MABC 2027 Pills: 각 Pills 클릭 시 해당 시나리오 질문 자동 입력
-function setupMABC2027Pills(){
+// MABC 2026 Pills: 각 Pills 클릭 시 해당 시나리오 질문 자동 입력
+function setupMABC2026Pills(){
   const pills = [
-    { id:'mabc2027-pill-1', question:'2026가단12345 손해배상 — 합의/서면 방향', label:'손해배상' },
-    { id:'mabc2027-pill-2', question:'2026가단67890 임대차 — 원상복구비 반박', label:'임대차' },
-    { id:'mabc2027-pill-3', question:'2026나54321 공사대금 항소 — 우선 확인', label:'공사대금 항소' }
+    { id:'mabc2026-pill-1', question:'2026가단12345 손해배상 — 합의/서면 방향', label:'손해배상' },
+    { id:'mabc2026-pill-2', question:'2026가단67890 임대차 — 원상복구비 반박', label:'임대차' },
+    { id:'mabc2026-pill-3', question:'2026나54321 공사대금 항소 — 우선 확인', label:'공사대금 항소' }
   ];
   pills.forEach(p=>{
     const el = document.getElementById(p.id);
@@ -626,7 +626,7 @@ async function runGenerate(query, isDemo){
     }else if(!raw?.ok && raw?.failure){
       data = { ok:false, failure:true, message: raw?.error || "기록을 불러오는 중 문제가 있었어요. 잠시 후 다시 시도해 주세요." };
     }else if(!raw?.ok){
-      data = { ok:false, failure:false, message: raw?.note || "연결된 도구에서 관련 기록을 찾지 못했어요. 최근 메모·요약·키워드를 알려주시면 그 기준으로 잡아볼게요." };
+      data = { ok:false, failure:false, message: raw?.note || "입력하신 내용으로는 카드 작성이 어려워요. 사건번호를 적어주세요." };
     }else{
       data = raw.data;
     }
@@ -658,7 +658,7 @@ async function runGenerate(query, isDemo){
         "<div class='result-card-body'>" +
           "<div class='result-block'>" +
             "<span class='block-label'>기록 없음 / 정리 불가</span>" +
-            "<span class='block-content'>연결된 도구에서 관련 기록을 찾지 못했거나, 입력하신 내용만으로는 카드 정리가 어려웠어요.</span>" +
+            "<span class='block-content'>입력하신 내용으로는 카드 작성이 어려워요. 사건번호를 적어주세요.</span>" +
           "</div>" +
           "<div class='result-block'>" +
             "<span class='block-label'>시도해 볼 것</span>" +
@@ -738,8 +738,8 @@ function escapeHtml(s){
 document.addEventListener('DOMContentLoaded', ()=>{
   // 1) 예시 Pills 설정 — 'examples' 요소 미존재로 건너뜀
   // setExamples();
-  // 2) MABC 2027 Pills 클릭 핸들러 등록
-  setupMABC2027Pills();
+  // 2) MABC 2026 Pills 클릭 핸들러 등록
+  setupMABC2026Pills();
   // 3) 카드 생성 / 다시 시도 버튼 핸들러
   function generateFromInput(){
     const q = $('input').value.trim();
