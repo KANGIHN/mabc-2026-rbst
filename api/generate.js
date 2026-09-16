@@ -67,7 +67,7 @@ function buildDemoResult(query) {
 
   // 2) 직접 매칭 없으면 사건번호 추출 후 재매칭
   if (!key) {
-    const caseNumMatch = queryNoSpace.match(/(\d{4}[가단나]\d+)/);
+    const caseNumMatch = queryNoSpace.match(/(\d{4}[가단나]\D*\d+)/);
     if (caseNumMatch) {
       const caseNo = caseNumMatch[1];
       key = Object.keys(demoMap).find(k => k.includes(caseNo)) ||
